@@ -1,3 +1,24 @@
+<?php 
+header ("url=SearchRecipe.php"); 
+include("dbconnection.php"); 
+
+//$query = mysqli_real_escape_string($_POST['query']); 
+
+if (empty($_POST['query'])) { 
+    echo 'No results found.'; 
+
+    }else{
+
+      $sql = "SELECT recipe_id, recipe_name, recipe_type FROM recipe r, recipetype rt WHERE r.recipe_typeid=rt.recipe_typeid AND recipe_name LIKE '%".$_POST['query']."%'"; 
+     
+      
+      $r_query = mysqli_query($connect, $sql);
+    }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,12 +59,6 @@
     <![endif]-->
 
 
-  <!-- PHP --> 
-   <?PHP 
-   include("dbconnection.php")
-
-   ?>
-   
 
     <!-- HEADER -->
   </head>
@@ -185,11 +200,11 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming-Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
+                <li><a href="http://localhost/Flaming Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
+                <li><a href="http://localhost/Flaming Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
+                <li><a href="http://localhost/Flaming Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
+                <li><a href="http://localhost/Flaming Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
+                <li><a href="http://localhost/Flaming Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
               </ul>
             </li>
 
@@ -205,11 +220,11 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming-Wings/SearchStock.php"><i class="fa fa-circle-o"></i> Search Stock</a></li>
-                <li><a href="http://localhost/Flaming-Wings/AddStock.php"><i class="fa fa-circle-o"></i> Add new Stock</a></li>
-                <li><a href="http://localhost/Flaming-Wings/ReplenishStock.php"><i class="fa fa-circle-o"></i> Replenish Stock</a></li>
-                <li><a href="http://localhost/Flaming-Wings/EditStock.php"><i class="fa fa-circle-o"></i> Edit Stock</a></li>
-                <li><a href="http://localhost/Flaming-Wings/WithdrawStock.php"><i class="fa fa-circle-o"></i> Withdraw Stock</a></li>
+                <li><a href="http://localhost/Flaming Wings/SearchStock.php"><i class="fa fa-circle-o"></i> Search Stock</a></li>
+                <li><a href="http://localhost/Flaming Wings/AddStock.php"><i class="fa fa-circle-o"></i> Add new Stock</a></li>
+                <li><a href="http://localhost/Flaming Wings/ReplenishStock.php"><i class="fa fa-circle-o"></i> Replenish Stock</a></li>
+                <li><a href="http://localhost/Flaming Wings/EditStock.php"><i class="fa fa-circle-o"></i> Edit Stock</a></li>
+                <li><a href="http://localhost/Flaming Wings/WithdrawStock.php"><i class="fa fa-circle-o"></i> Withdraw Stock</a></li>
               </ul>
             </li>
 
@@ -226,14 +241,13 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming-Wings/InventoryReport.php"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
-                <li><a href="http://localhost/Flaming-Wings/VerifyStock.php"><i class="fa fa-circle-o"></i>Stock Controller</a></li>
-                <li><a href="http://localhost/Flaming-Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
+                <li><a href="http://localhost/Flaming Wings/InventoryReport.php"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
+                <li><a href="http://localhost/Flaming Wings/VerifyStock.php"><i class="fa fa-circle-o"></i>Stock Controller</a></li>
+                <li><a href="http://localhost/Flaming Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
               </ul>
             </li>
-        <!-- /.sidebar -->
 
-           <!--CONVERSION-->
+              <!--CONVERSION-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-calculator"></i> 
@@ -247,68 +261,66 @@
                 <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
+        <!-- /.sidebar -->
       </aside>
 
-
-
-       <!--SEARCH STOCK--> 
-    <div class="content-wrapper">
-      <form action="SearchStockBar.php" method="POST" class="sidebar-form">
-            <div class="col-xs-10">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                  <h3 class="box-title"><b>SEARCH STOCK</b></h3>
+<div class="content-wrapper">
+  <div class='row'>
+            <div class='col-xs-10'>
+              <div class='box'>
+                <div class='box-header'>
+                  <h3 class='box-title'><b>Results</b></h3>
                 </div><!-- /.box-header -->
-                <!-- form start -->
-                <form class="form-horizontal">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label for="inputQuery" class="col-sm-2 control-label">Stock code</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter stock code">
-                      </div>
-                    </div>
-                  <div class="box-footer">
-                    <input type="submit" class="btn btn-info pull-right" value="Search"/>
-                  </div><!-- /.box-footer -->
-                </form>
-              </div>
-            </div>
-          </form>
+                <div class='box-body'>
+                  <?php
 
+                  $numrows = mysqli_num_rows($r_query); 
 
-           <!--<div class="row">
-            <div class="col-xs-10">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><b>Results</b></h3>
-                </div><!-- /.box-header -->
-           <!--     <div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover">
+                  if($numrows == 0){
+                    echo "There are no results.";
+
+  } else {
+
+  ?>
+                  <table id='example2' class='table table-bordered table-hover'>
                     <thead>
                       <tr>
-                        <th>Stock Code</th>
-                        <th>Category/Type</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Unit of Measurement</th>
+                        <th>ID</th>
+                        <th>Recipe Name</th>
+                        <th>Recipe Type</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
+
+<?php
+
+
+
+while ($row = mysqli_fetch_array($r_query)){ 
+	
+
+	 					echo "<tr>"; 
+                          echo "<td>".$row['recipe_id']."</td>"; 
+                          echo "<td>".$row['recipe_name']."</td>"; 
+                          echo "<td>".$row['recipe_type']."</td>"; 
                     
-                     
+                          echo "</tr>";
 
-                    </tbody>
+
+}
+}
+?>
+      </tbody>
                   </table>
+                </b>
+                  <a href="SearchRecipe.php">Search Again</a>
                 </div><!-- /.box-body -->
-             <!-- </div><!-- /.box -->
+              </div><!-- /.box -->
 
-    </div><!-- ./wrapper -->
-          
-
+  
 
 
-         
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
@@ -348,20 +360,8 @@
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <script>
-       $(document).ready(function(e)){ 
-        $.ajax({ 
-          url: "try.php". 
-          data: { 
-            inputQuery : $("#inputQuery").val()
-          },
-
-          dataType : "json", 
-          type : "post", 
-          success: function(data){ 
-            alert(data.myrealarr[0])}; 
-        });
-       }
-    </script>
+   
   </body>
 </html>
+
+ 

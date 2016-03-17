@@ -50,7 +50,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="http://localhost/Flaming Wings/MAIN.php" class="logo">
+        <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -230,6 +230,21 @@
               </ul>
             </li>
         <!-- /.sidebar -->
+
+           <!--CONVERSION-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
+              </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
+            </li>
       </aside>
 
 
@@ -253,7 +268,7 @@
                                     echo "<td>" .$_POST['recipe_name'];
                                     
                                 ?> 
-                                <a href="http://localhost/Flaming Wings/ViewRecipe.php">Go Back</a>
+                                <a href="ViewRecipe.php">Go Back</a>
                           
                           </tbody>
                           </table>

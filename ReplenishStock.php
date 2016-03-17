@@ -231,6 +231,21 @@
               </ul>
             </li>
         <!-- /.sidebar -->
+
+           <!--CONVERSION-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
+              </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
+            </li>
       </aside>
 
 
@@ -257,9 +272,9 @@
                       </div>
                     </div>
                      <div class="form-group">
-                      <label for="inputdtReceived" class="col-sm-2 control-label">Date Received</label>
+                      <label for="inputdtReceived" class="col-sm-2 control-label">Date Received (dd/mm/yy)</label>
                       <div class="col-sm-10">
-                        <input type="date" class="form-control" id="inputdtReceived" required>
+                        <input type="date" class="form-control" id="inputdtReceived" required value="<?php echo date('Y-m-d'); ?>" />
                       </div>
                     </div>
                     <div class="form-group">

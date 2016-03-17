@@ -38,12 +38,11 @@
     <![endif]-->
 
 
-  <!-- PHP --> 
+   <!-- PHP --> 
    <?PHP 
    include("dbconnection.php")
 
    ?>
-   
 
     <!-- HEADER -->
   </head>
@@ -52,7 +51,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="MAIN.php" class="logo">
+        <a href="http://localhost/Flaming Wings/MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -166,8 +165,8 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <!--DASHBOARD-->
-            <li class="active treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+            <li class="treeview">
+              <a href="http://localhost/Flaming-Wings/MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -176,7 +175,7 @@
 
 
 
-          <!---RECIPE -->
+            <!---RECIPE -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-book"></i>
@@ -233,7 +232,7 @@
             </li>
         <!-- /.sidebar -->
 
-           <!--CONVERSION-->
+         <!--CONVERSION-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-calculator"></i> 
@@ -249,65 +248,114 @@
             </li>
       </aside>
 
-
-
-       <!--SEARCH STOCK--> 
+           <!--SEARCH--> 
     <div class="content-wrapper">
-      <form action="SearchStockBar.php" method="POST" class="sidebar-form">
-            <div class="col-xs-10">
-            <div class="box box-info">
+       <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>SEARCH STOCK</b></h3>
+                  <h3 class="box-title"><b>ADD UNIT OF MEASUREMENT (UOM) </b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form role="form" action="#" method="post">
                   <div class="box-body">
+
                     <div class="form-group">
-                      <label for="inputQuery" class="col-sm-2 control-label">Stock code</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter stock code">
-                      </div>
+                      <label for="uom" class="col-sm-2 control-label">Enter new UOM</label>
+                      <input type="text" class="form-control" id="uom" maxlength="30" name="uom">
                     </div>
+                    
+
+                  </div><!-- /.box-body -->
+
                   <div class="box-footer">
-                    <input type="submit" class="btn btn-info pull-right" value="Search"/>
-                  </div><!-- /.box-footer -->
+                    <button type="submit" class="btn btn-primary">Add New UOM</button>
+                  </div>
                 </form>
-              </div>
-            </div>
-          </form>
+              </div><!-- /.box -->
+
+         
 
 
-           <!--<div class="row">
-            <div class="col-xs-10">
+              <!-- RECENTLY ADDED TABLE -->
+              <div class="row">
+            <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title"><b>Results</b></h3>
+                  <h3 class="box-title"><b>RECENTLY ADDED</b></h3>
                 </div><!-- /.box-header -->
-           <!--     <div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover">
+                <div class="box-body">
+                  <table id="recentlyadded" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Stock Code</th>
+                        <th>ID</th>
                         <th>Category/Type</th>
                         <th>Item Name</th>
-                        <th>Quantity</th>
                         <th>Unit of Measurement</th>
+                        
+
                       </tr>
                     </thead>
                     <tbody>
-                    
                      
+                       <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['stock_id']."</td>"; //stockcode
+                          echo "<td>".$row["stock_type"]."</td>"; //type
+                          echo "<td>".$row["sname"]."</td>"; //itemname
+                          echo "<td>".$row["unit_name"]."</td>"; //unit
+                          echo "</tr>";
 
+                      
+                        }
+                         ?>
+                     <!-- <tr>
+                        <td>0001</td>
+                        <td>Rice</td>
+                        <td>Pasta/Rice</td>
+                        <td>10</td>
+                        <td>sack/s</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>0002</td>
+                        <td>Alaska Crema</td>
+                        <td>Dairy</td>
+                        <td>46</td>
+                        <td>piece/s</td>
+                      
+                      </tr>
+                        <tr>
+                        <td>0003</td>
+                        <td>Century Tuna</td>
+                        <td>Canned Goods</td>
+                        <td>2</td>
+                        <td>can/s</td>
+                      
+                      </tr>-->
+                     
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-             <!-- </div><!-- /.box -->
+              </div><!-- /.box -->
+
+
 
     </div><!-- ./wrapper -->
+          
           
 
 
 
+
+
+          </div><!-- /.tab-pane -->
          
     </div><!-- ./wrapper -->
 
@@ -348,20 +396,5 @@
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <script>
-       $(document).ready(function(e)){ 
-        $.ajax({ 
-          url: "try.php". 
-          data: { 
-            inputQuery : $("#inputQuery").val()
-          },
-
-          dataType : "json", 
-          type : "post", 
-          success: function(data){ 
-            alert(data.myrealarr[0])}; 
-        });
-       }
-    </script>
   </body>
 </html>

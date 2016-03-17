@@ -166,7 +166,7 @@
 
             <!--DASHBOARD-->
             <li class="treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="http://localhost/Flaming-Wings/MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -232,11 +232,19 @@
             </li>
         <!-- /.sidebar -->
 
-          <!--CONVERSION-->
+         <!--CONVERSION-->
             <li class="treeview">
-              <a href="http://localhost/Flaming Wings/Conversion.php">
-                <i class="fa fa-calculator"></i> <span>Conversion</span> 
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
               </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
             </li>
       </aside>
 
@@ -250,12 +258,54 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title"><b>CONVERSION TABLE</b></h3>
+                  </br>
+                  <h5>Unit of Measurement (UOM)</h5>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                  <form class="form-horizontal" action="#"  method="post" role="form" name="convert">
                   <div class="box-body">
-                    
-                    <div class="form-group">
+                    <table  id="convert" class="table table-bordered table-hover" name="convertTable">
+                      <thead>
+                        <th>Qty1</th>
+                        <th>UOM1</th>
+                        <th>Qty2</th>
+                        <th>UOM2</th>
+                      </thead>
+                      <td>  <input type="number" class="form-control" id="inputQty" placeholder="Qty" required></td>
+                      <td> <select class="form-control" name="unitM" 
+                          value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
+                           <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
+                     
+                            <?php
+                            $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+                            while ($row = mysqli_fetch_array($sql)){
+                            echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
+                            }
+                             ?>
+                          </select>
+                        </td>
+                        <td>
+                          
+                            <input type="number" class="form-control" id="inputQty" placeholder="Qty" required>
+                        
+                        </td>
+
+                         <td> <select class="form-control" name="unitM" 
+                          value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
+                           <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
+                     
+                            <?php
+                            $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+                            while ($row = mysqli_fetch_array($sql)){
+                            echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
+                            }
+                             ?>
+                          </select>
+                        </td>
+
+
+                    </table>
+                   <!-- <div class="form-group">
                       <label for="inputQty" class="col-sm-2 control-label">Quantity Received</label>
                       <div class="col-sm-4">
                         <input type="number" class="form-control" id="inputQty" placeholder="Qty" required>
@@ -273,11 +323,11 @@
                          <textarea class="form-control" rows="3" placeholder="Remarks ..." id="inputRemarks"></textarea>
                        
                       </div>
-                    </div>
+                    </div>-->
                     
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-info pull-right">Replenish</button>
+                    <button type="submit" class="btn btn-info pull-right">Submit</button>
                   </div><!-- /.box-footer -->
                 </form>
                 

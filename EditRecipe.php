@@ -234,6 +234,22 @@
               </ul>
             </li>
         <!-- /.sidebar -->
+
+         
+         <!--CONVERSION-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
+              </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
+            </li>
       </aside>
 
 
@@ -256,7 +272,7 @@
                             <td align="center">
                               <b></b>
                                 <button type="submit" form="editTable" value="Submit">Confirm</button>
-                                <a href="http://localhost/Flaming Wings/EditRecipe.php">Cancel</a>
+                                <a href="http://localhost/Flaming-Wings/EditRecipe.php">Cancel</a>
                             </td>
                           </tbody>
                           </table>

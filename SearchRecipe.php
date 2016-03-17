@@ -227,13 +227,28 @@
               </ul>
             </li>
         <!-- /.sidebar -->
+
+           <!--CONVERSION-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
+              </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
+            </li>
       </aside>
 
 
 
        <!--SEARCH--> 
     <div class="content-wrapper">
-      <form action="#" method="get" class="sidebar-form">
+      <form action="SearchRecipeBar.php" method="post" class="sidebar-form">
             <div class="col-xs-10">
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -243,13 +258,13 @@
                 <form class="form-horizontal">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Recipe Name</label>
+                      <label for="inputQuery" class="col-sm-2 control-label">Recipe Name</label>
                       <div class="col-sm-8">
-                        <input type="name" class="form-control" id="inputEmail3" placeholder="Enter Recipe name">
+                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter Recipe name">
                       </div>
                     </div>
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-info pull-right">Search</button>
+                   <input type="submit" class="btn btn-info pull-right" value="Submit"/>
                   </div><!-- /.box-footer -->
                 </form>
               </div>
@@ -259,13 +274,13 @@
 
         
         <!---TABLE FOR RECIPE-->
-       <div class="row">
+    <!--   <div class="row">
             <div class="col-xs-10">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title"><b>RECIPES</b></h3>
                 </div><!-- /.box-header -->
-                <div class="box-body">
+         <!--       <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>

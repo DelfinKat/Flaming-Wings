@@ -231,6 +231,22 @@
               </ul>
             </li>
         <!-- /.sidebar -->
+
+        
+         <!--CONVERSION-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i> 
+                <span>Conversion</span> 
+                <span class="label label-primary pull-right"></span>
+              </a>
+
+
+               <ul class="treeview-menu">
+                <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
+              </ul>
+            </li>
       </aside>
 
            <!--SEARCH--> 
@@ -273,6 +289,21 @@
                         $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
                         while ($row = mysqli_fetch_array($sql)){
                         echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
+                        }
+                         ?>
+                      </select>
+                    </div>
+
+                     <div class="form-group">
+                      <label>Packaging</label>
+                      <select class="form-control" name="pack" required
+                      value="<?php if (isset($_POST['pack_name']) && !$flag) echo $_POST['pack_name']; ?>">
+                        <option value="" disabled selected> -- Packaging --</option> //list of packaging from database
+                     
+                        <?php
+                        $sql = mysqli_query($connect, "SELECT * FROM unitpackaging");
+                        while ($row = mysqli_fetch_array($sql)){
+                        echo "<option value=\"" . $row['pack_id'] . "\">" . $row['pack_name'] . "</option>";
                         }
                          ?>
                       </select>
@@ -322,12 +353,12 @@
 
               <!-- RECIPES TABLE --> 
 
-              <div class="row">
+       <!--       <div class="row">
                 <div class="col-xs-40">
                   <div class="box-header">
                     <h3 class="box-title"><b>RECIPES</b></h3>
                     </div><!-- /.box-header -->
-                <div class="box-body">
+       <!--         <div class="box-body">
                   <table id="recipe" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -355,7 +386,7 @@
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
+        <!--      </div><!-- /.box -->
 
              <!--     </div>
                 </div>
