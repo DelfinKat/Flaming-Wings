@@ -184,11 +184,11 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
-                <li><a href="http://localhost/Flaming Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
-                <li><a href="http://localhost/Flaming Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
-                <li><a href="http://localhost/Flaming Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
-                <li><a href="http://localhost/Flaming Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
+                <li><a href="http://localhost/Flaming-Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
+                <li><a href="http://localhost/Flaming-Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
+                <li><a href="http://localhost/Flaming-Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
+                <li><a href="http://localhost/Flaming-Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
               </ul>
             </li>
 
@@ -204,11 +204,11 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming Wings/SearchStock.php"><i class="fa fa-circle-o"></i> Search Stock</a></li>
-                <li><a href="http://localhost/Flaming Wings/AddStock.php"><i class="fa fa-circle-o"></i> Add new Stock</a></li>
-                <li><a href="http://localhost/Flaming Wings/ReplenishStock.php"><i class="fa fa-circle-o"></i> Replenish Stock</a></li>
-                <li><a href="http://localhost/Flaming Wings/EditStock.php"><i class="fa fa-circle-o"></i> Edit Stock</a></li>
-                <li><a href="http://localhost/Flaming Wings/WithdrawStock.php"><i class="fa fa-circle-o"></i> Withdraw Stock</a></li>
+                <li><a href="http://localhost/Flaming-Wings/SearchStock.php"><i class="fa fa-circle-o"></i> Search Stock</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddStock.php"><i class="fa fa-circle-o"></i> Add new Stock</a></li>
+                <li><a href="http://localhost/Flaming-Wings/ReplenishStock.php"><i class="fa fa-circle-o"></i> Replenish Stock</a></li>
+                <li><a href="http://localhost/Flaming-Wings/EditStock.php"><i class="fa fa-circle-o"></i> Edit Stock</a></li>
+                <li><a href="http://localhost/Flaming-Wings/WithdrawStock.php"><i class="fa fa-circle-o"></i> Withdraw Stock</a></li>
               </ul>
             </li>
 
@@ -225,9 +225,9 @@
               </a>
 
               <ul class="treeview-menu">
-                <li><a href="http://localhost/Flaming Wings/InventoryReport.php"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
-                <li><a href="http://localhost/Flaming Wings/VerifyStock.php"><i class="fa fa-circle-o"></i>Stock Controller</li>
-                 <li><a href="http://localhost/Flaming Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
+                <li><a href="http://localhost/Flaming-Wings/InventoryReport.php"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
+                <li><a href="http://localhost/Flaming-Wings/VerifyStock.php"><i class="fa fa-circle-o"></i>Stock Controller</li>
+                 <li><a href="http://localhost/Flaming-Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
               </ul>
             </li>
         <!-- /.sidebar -->
@@ -260,14 +260,21 @@
                         }
                          ?>
                       </select>
+                      
                     </div>
                       <div class="form-group">
                       <label for="InputQty">Actual Quantity</label>
                       <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" required>
                     </div>
 
-                    //date Verified 
-                    
+                    <!-- DATE -->
+                      <div class="form-group">
+                        <label for="inputdtReceived" class="col-sm-2 control-label">Date Received</label>
+                        <div class="col-sm-10">
+                        <input type="date" class="form-control" id="inputdtReceived" required>
+                        </div>
+                       </div>  
+
                     <div class="box-body">
                     <div class="form-group">
                       <label for="InputRemarks">Remarks</label>
