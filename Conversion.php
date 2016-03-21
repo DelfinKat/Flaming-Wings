@@ -51,7 +51,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="http://localhost/Flaming Wings/MAIN.php" class="logo">
+        <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -262,18 +262,21 @@
                   <h5>Unit of Measurement (UOM)</h5>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                 <form class="form-horizontal" action="#"  method="post" role="form" name="convert">
+                 <form class="form-horizontal" action="Conversion1.php"  method="post" role="form" name="convert">
                   <div class="box-body">
                     <table  id="convert" class="table table-bordered table-hover" name="convertTable">
                       <thead>
                         <th>Qty1</th>
                         <th>UOM1</th>
+                        <th> = </th>
                         <th>Qty2</th>
                         <th>UOM2</th>
                       </thead>
-                      <td>  <input type="number" class="form-control" id="inputQty" placeholder="Qty" required></td>
-                      <td> <select class="form-control" name="unitM" 
-                          value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
+                      <td>  <input type="number" class="form-control" id="qty1" name="qty1" placeholder="Qty" 
+                        value="<?php if (isset($_POST['qty1'])) echo $_POST['qty1']; ?>" required></td>
+
+                      <td> <select class="form-control" name="unitM1" 
+                          value="<?php if (isset($_POST['unitM1'])) echo $_POST['unitM1']; ?>">
                            <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
                      
                             <?php
@@ -285,13 +288,17 @@
                           </select>
                         </td>
                         <td>
+                          <b>=</b>
+                        </td>
+                        <td>
                           
-                            <input type="number" class="form-control" id="inputQty" placeholder="Qty" required>
+                            <input type="number" class="form-control" id="qty2" name="qty2" placeholder="Qty" 
+                            value="<?php if (isset($_POST['qty2'])) echo $_POST['qty2']; ?>" required>
                         
                         </td>
 
-                         <td> <select class="form-control" name="unitM" 
-                          value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
+                         <td> <select class="form-control" name="unitM2" 
+                          value="<?php if (isset($_POST['unitM2'])) echo $_POST['unitM2']; ?>">
                            <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
                      
                             <?php
@@ -333,8 +340,72 @@
                 
               </div><!-- /.box -->
 
-              <!-- RECIPES TABLE --> 
+              <!-- CONVERSIONS TABLE --> 
 
+            <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>CONVERSIONS</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="uomadded" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>QTY1</th>
+                        <th>UOM1</th>
+                        <th>QTY2</th>
+                        <th>UOM2</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                       <?php
+                       
+                        $sql = mysqli_query($connect, "SELECT conv_id, qty1, unit_name, qty2 FROM conversion c JOIN unitmeasurement u WHERE c.unit_id1 = u.unit_id ");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['conv_id']."</td>"; //conv id
+                          echo "<td>".$row["qty1"]."</td>"; //qty1
+                          echo "<td>".$row['unit_name']."</td>"; //unit_id1
+                          echo "<td>".$row["qty2"]."</td>"; //qty2
+                      
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                     <!-- <tr>
+                        <td>0001</td>
+                        <td>Rice</td>
+                        <td>Pasta/Rice</td>
+                        <td>10</td>
+                        <td>sack/s</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>0002</td>
+                        <td>Alaska Crema</td>
+                        <td>Dairy</td>
+                        <td>46</td>
+                        <td>piece/s</td>
+                      
+                      </tr>
+                        <tr>
+                        <td>0003</td>
+                        <td>Century Tuna</td>
+                        <td>Canned Goods</td>
+                        <td>2</td>
+                        <td>can/s</td>
+                      
+                      </tr>-->
+                     
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
               
 
     </div><!-- ./wrapper -->

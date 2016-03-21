@@ -162,7 +162,7 @@
 
             <!--DASHBOARD-->
             <li class="active treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>

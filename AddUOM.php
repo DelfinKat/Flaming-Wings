@@ -260,12 +260,14 @@
                   <h3 class="box-title"><b>ADD UNIT OF MEASUREMENT (UOM) </b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="#" method="post">
+                <form role="form" action="AddUOM1.php" method="post">
                   <div class="box-body">
 
                     <div class="form-group">
-                      <label for="uom" class="col-sm-2 control-label">Enter new UOM</label>
-                      <input type="text" class="form-control" id="uom" maxlength="30" name="uom">
+                      <label for="uom" >Enter new UOM</label>
+                      <input type="text" class="form-control" id="unit_name" maxlength="30" name="unit_name"
+                       value="<?php if (isset($_POST['unit_name']) && !$flag) echo $_POST['unit_name']; ?>" required>
+
                     </div>
                     
 
@@ -288,28 +290,25 @@
                   <h3 class="box-title"><b>RECENTLY ADDED</b></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="recentlyadded" class="table table-bordered table-hover">
+                  <table id="uomadded" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Category/Type</th>
-                        <th>Item Name</th>
-                        <th>Unit of Measurement</th>
-                        
+                        <th>UOM Name</th>
+                       
 
                       </tr>
                     </thead>
                     <tbody>
                      
                        <?php
-                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname");
+                       
+                        $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td>".$row['stock_id']."</td>"; //stockcode
-                          echo "<td>".$row["stock_type"]."</td>"; //type
-                          echo "<td>".$row["sname"]."</td>"; //itemname
-                          echo "<td>".$row["unit_name"]."</td>"; //unit
+                          echo "<td>".$row['unit_id']."</td>"; //unit id
+                          echo "<td>".$row["unit_name"]."</td>"; //unit name
+                        
                           echo "</tr>";
 
                       

@@ -166,7 +166,7 @@
 
             <!--DASHBOARD-->
             <li class="treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -265,21 +265,11 @@
                   <div class="box-body">
 
                     <div class="form-group">
-                      <input type="text" class="form-control" id="#" placeholder="5 Liter" maxlength="30" name="sname">
+                      <label>Quantity</label>
+                      <input type="text" class="form-control" id="qty" placeholder="Quantity" maxlength="30" name="qty">
                     </div>
                     
-                      <div class="form-group">
-                      <input type="text" class="form-control" id="#" placeholder="can" maxlength="30" name="sname">
-                    </div>
-                    
-
-                     <div class="form-group">
-                      <label for="InputItemName">Stock name</label>
-                      <input type="text" class="form-control" id="InputItemName" placeholder="Enter stock name" maxlength="30" name="sname" required
-                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
-                    </div>
-                 
-                     <div class="form-group">
+                    <div class="form-group">
                       <label>Unit of Measurement</label>
                       <select class="form-control" name="unitM" required
                       value="<?php if (isset($_POST['unitM']) && !$flag) echo $_POST['unitM']; ?>">
@@ -294,11 +284,11 @@
                       </select>
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                       <label>Packaging</label>
-                      <select class="form-control" name="pack" required
-                      value="<?php if (isset($_POST['pack_name']) && !$flag) echo $_POST['pack_name']; ?>">
-                        <option value="" disabled selected> -- Packaging --</option> //list of packaging from database
+                      <select class="form-control" name="pack_name" required
+                      value="<?php if (isset($_POST['unitM']) && !$flag) echo $_POST['unitM']; ?>">
+                        <option value="" disabled selected> -- Packaging --</option> 
                      
                         <?php
                         $sql = mysqli_query($connect, "SELECT * FROM unitpackaging");
@@ -308,6 +298,15 @@
                          ?>
                       </select>
                     </div>
+                    
+
+                     <div class="form-group">
+                      <label for="InputItemName">Stock name</label>
+                      <input type="text" class="form-control" id="InputItemName" placeholder="Enter stock name" maxlength="30" name="sname" required
+                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
+                    </div>
+                 
+                  
                      
                      <div class="form-group">
                       <label>Category/Type</label>
@@ -407,8 +406,9 @@
                         <th>Stock Code</th>
                         <th>Category/Type</th>
                         <th>Item Name</th>
-                        <th>Unit of Measurement</th>
-                        
+                        <th>Qty</th>
+                        <th>UOM</th>
+                        <th>Packaging</th>
 
                       </tr>
                     </thead>
@@ -416,13 +416,16 @@
                      
                        <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname");
+                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
+                          NATURAL JOIN unitpackaging");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
                           echo "<td>".$row["stock_type"]."</td>"; //type
                           echo "<td>".$row["sname"]."</td>"; //itemname
+                          echo "<td>".$row["qty"]."</td>"; //qty
                           echo "<td>".$row["unit_name"]."</td>"; //unit
+                          echo "<td>".$row["pack_name"]."</td>"; //packaging
                           echo "</tr>";
 
                       

@@ -60,8 +60,7 @@
     <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- Slimscroll -->
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
+   
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -430,10 +429,11 @@
                    
                   </div>
 
+
     </div><!-- ./wrapper -->
           
 
-
+      <a href="AddIngType.php">Add Ingredient Type</a>
 
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->

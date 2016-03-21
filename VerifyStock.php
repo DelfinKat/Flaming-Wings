@@ -166,7 +166,7 @@
 
             <!--DASHBOARD-->
             <li class="treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -262,7 +262,7 @@
                 <!-- form start -->
                 <form role="form" method="post">
                   <div class="box-body">
-                    </div>
+                   
                      <div class="form-group">
                       <label>Stock Name</label>
                       <select class="form-control" name="sname" required>
@@ -284,13 +284,13 @@
 
                     <!-- DATE -->
                       <div class="form-group">
-                        <label for="inputdtReceived" class="col-sm-2 control-label">Date Received</label>
-                        <div class="col-sm-10">
+                        <label for="inputdtReceived">Date Received</label>
+                       
                         <input type="date" class="form-control" id="inputdtReceived" required>
-                        </div>
+                        
                        </div>  
 
-                    <div class="box-body">
+                    
                     <div class="form-group">
                       <label for="InputRemarks">Remarks</label>
                       <input type="text" class="form-control" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
@@ -298,7 +298,6 @@
                   
 
 
-                  </div><!-- /.box-body -->
 
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Verify Stock</button>
