@@ -256,12 +256,13 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
+
                 <div class="box-header with-border">
                   <h3 class="box-title"><b>ADD INGREDIENT TYPE</b></h3>
                  
                 </div><!-- /.box-header -->
                <!-- form start -->
-                <form role="form" action="#" method="post">
+                <form role="form" action="AddIngType1.php" method="post">
                   <div class="box-body">
                    
                      <div class="form-group">
@@ -269,8 +270,8 @@
                       <input type="text"  class="form-control" id="ing_name" placeholder="Ingredient Name" name="ing_name" required>
                     </div>
                       <div class="form-group">
-                      <label>Emergency Level</label> <h5>When will the system notify you if there is a shortage of this ingredient?</h5> 
-                      <input type="number" class="form-control" id="emergencyLvl" placeholder="emergencyLvl" name="emergencyLvl" required>
+                      <label>Emergency Level</label> <h5>This is the minimum amount of the ingredient you should have on hand.</h5> 
+                      <input type="number" step="any" class="form-control" id="emergencyLvl" placeholder="emergencyLvl" name="emergencyLvl" required>
                     </div>
 
           
@@ -350,15 +351,10 @@
 
     </div><!-- ./wrapper -->
           
-          
-
-
-
-
-
           </div><!-- /.tab-pane -->
          
     </div><!-- ./wrapper -->
+      <a href="AddRecipe.php" class="btn btn-info" role="button">Go Back to Add Recipe</a>
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

@@ -257,21 +257,22 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>VERIFY STOCK</b></h3>
+                  <h3 class="box-title"><b>Verify Stock</b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="post">
+                <form role="form" action="VerifyStock1.php" method="post">
                   <div class="box-body">
                    
                      <div class="form-group">
                       <label>Stock Name</label>
-                      <select class="form-control" name="sname" required>
-                        <option value="" disabled selected> -- Stock Name --</option> 
-                     
+                      <select class="form-control" name="sname" required
+                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
+                        <option value="" disabled selected> -- ID -- Stock Name -- Qty --</option> 
+                        
                         <?php
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN unitmeasurement");
+                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, pack_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
                         while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"sname\" + \"stock_id\">" .$row['sname']. "</option>"; 
+                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['pack_name']. "</option>"; 
                         }
                          ?>
                       </select>
@@ -279,14 +280,14 @@
                     </div>
                       <div class="form-group">
                       <label for="InputQty">Actual Quantity</label>
-                      <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" required>
+                      <input type="number" min="0" step="any" class="form-control" id="InputQty" placeholder="Quantity" name="qty" required>
                     </div>
 
                     <!-- DATE -->
                       <div class="form-group">
-                        <label for="inputdtReceived">Date Received</label>
+                        <label for="inputdtReceived">Date Verified</label>
                        
-                        <input type="date" class="form-control" id="inputdtReceived" required>
+                        <input type="date" class="form-control" id="inputdtReceived" name="dtVerified" required value="<?php echo date('Y-m-d'); ?>" />
                         
                        </div>  
 

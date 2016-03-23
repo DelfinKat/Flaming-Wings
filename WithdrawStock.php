@@ -253,64 +253,51 @@
        <!--SEARCH--> 
     <div class="content-wrapper">
        <section class="content">
-        <!-- START OF MODAL -->
+
+         <!-- START OF MODAL -->
         <div id="edit" class="modal fade">
            <div class="modal-dialog">
              <div class="modal-content">
                <div class="modal-header">
-                        <b><h4>Withdraw Stock </h4></b>
-                     
+                        <b><h3>Withdraw Stock</h3></b>
+                         
                 </div>
                <div class="modal-body">
-                    <form action="#" method="post" role="form" name="replenishTable">
-                         <table id="withdrawTable" class="table table-bordered table-hover" name="withdrawTable">
-                          <tbody>
-                            <td align="center">
-                              
-                            </br>
-                               <div class="form-group">
-                                <label for="InputQty">Enter quantity to be withdrawn </label>
-                                 <div class="col-sm-4"><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="InputQty" align="center"  required>
-                                  </div> 
-                                </br>
-                                <div class="form-group">
-                                </br>
-                                 <div class="col-sm-10"><input type="text" class="form-control" id="InputRemarks" placeholder="Remarks..." name="InputRemarks" align="center">
-                                  </div> 
-                                </br>
 
-                              <div class="form-group">
-                                <label for="inputdtWithdrawn" class="col-sm-2 control-label">Date Withdrawn (dd/mm/yy)</label>
-                                <div class="col-sm-10">
-                               <input type="date" class="form-control" id="inputdtWithdrawn" required value="<?php echo date('Y-m-d'); ?>" />
-                                </div>
-                             </div>
-
-
-                              </br>
-                               </td>
-                               <th>
-                                   <div class="form-group">
-                                  <button type="submit" form="withdrawTable" value="Submit">Withdraw</button>
-                                  <a href="WithdrawStock.php">Cancel</a>
-                              </div>
-                               </th>
-
-                          </tbody>
-                           <tfoot>
-                             
-                            </tfoot>
-                          </table>
-                     
+                 <form class="form-horizontal" action="#"  method="post" role="form" name="withdrawTable">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputQty" class="col-sm-2 control-label">Quantity to be Withdrawn</label>
+                      <div class="col-sm-4">
+                        <input type="number" step="any" min="0" class="form-control" id="inputQty" placeholder="Qty" required>
+                      </div>
                     </div>
-                    </form>
+                     <div class="form-group">
+                      <label for="inputdtReceived" class="col-sm-2 control-label">Date Withdrawn (dd/mm/yy)</label>
+                      <div class="col-sm-10">
+                        <input type="date" class="form-control" id="inputdtWithdrawn" required value="<?php echo date('Y-m-d'); ?>" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputRemarks" class="col-sm-2 control-label">Remarks</label>
+                      <div class="col-sm-10">
+                         <textarea class="form-control" rows="3" placeholder="Remarks ..." id="inputRemarks"></textarea>
+                       
+                      </div>
+                    </div>
+                    
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-info pull-right">Withdraw</button>
+                  </div><!-- /.box-footer -->
+                </form>
+              </div>
                </div>
              </div>
            </div>
        
             <!-- END OF MODAL -->
 
-        
         
           <form action="#" method="post" class="sidebar-form">
             <div class="col-xs-10">

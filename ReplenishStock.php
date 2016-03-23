@@ -51,7 +51,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="MAIN.html" class="logo">
+        <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -268,7 +268,7 @@
                     <div class="form-group">
                       <label for="inputQty" class="col-sm-2 control-label">Quantity Received</label>
                       <div class="col-sm-4">
-                        <input type="number" class="form-control" id="inputQty" placeholder="Qty" required>
+                        <input type="number" step="any" min="0" class="form-control" id="inputQty" placeholder="Qty" required>
                       </div>
                     </div>
                      <div class="form-group">
@@ -290,29 +290,7 @@
                     <button type="submit" class="btn btn-info pull-right">Replenish</button>
                   </div><!-- /.box-footer -->
                 </form>
-              </div><!-- /.box -->
-                 <!--   <form class="form-horizontal" action="replenishstock1.php" method="post" role="form" name="replenishTable">
-                         <table id="replenishTable" class="table table-bordered table-hover" name="replenishTable">
-                          <tbody>
-                         
-                                <label for ="qty">Quantity</label>
-                                 <input type="number" class="form-control" placeholder="Quantity Received" name="qty" required autofocus>
-                           
-                           
-                                <label for ="dtReceived">Date Received</label>
-                                <input type="date" class="form-control" placeholder="Date Received" name="dtReceived" required autofocus>
-                         
-                          
-                              <input type="text" class="form-control" placeholder="Remarks..." name="remarks">
-                            
-                            
-                                <button type="submit" form="replenishTable" value="Submit">Replenish</button>
-                           
-                          </tbody>
-                          </table>
-                     
-                    </div>
-                    </form>-->
+              </div>
                </div>
              </div>
            </div>

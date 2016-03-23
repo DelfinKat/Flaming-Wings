@@ -80,17 +80,18 @@
 
             $(ingredientwrapper).append('<tr><td><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if (isset($_POST["qty"])) echo $_POST["qty"]; ?>"></td>' 
               + '<td><select class="form-control" name="unitM" value="<?php if (isset($_POST["unitM"])) echo $_POST["unitM"]; ?>"> <option value="" disabled selected>Unit of Measurement</option>'
-              + '<?php'
-              + '$sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");'
-              + 'while ($row = mysqli_fetch_array($sql)){'
-              + 'echo "<option value=" . $row["unit_id"] . ">" . $row["unit_name"] . "</option>";}?></select></td>' 
+              <?php
+              $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+              while ($row = mysqli_fetch_array($sql)){
+              echo "<option value=" . $row["unit_id"] . ">" . $row["unit_name"] . "</option>";}?></select></td>
               + '<td> <select class="form-control" name="ing_name"'
-              + 'value="<?php if (isset($_POST["ing_name"])) echo $_POST["ing_name"]; ?>">'
-              + '<option value="" disabled selected>Available Ingredients</option>'
-              + '<?php'
-              + '$sql = mysqli_query($connect, "SELECT * FROM ingredientname");'
-              + 'while ($row = mysqli_fetch_array($sql)){'
-              + 'echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>'); 
+              'value="'
+              <?php if (isset($_POST["ing_name"])) echo $_POST["ing_name"]; ?>">
+              <option value="" disabled selected>Available Ingredients</option>
+              <?php
+              $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
+              while ($row = mysqli_fetch_array($sql)){
+              echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>); 
       });
       }); 
       //$(".addingredient").click(function(){
@@ -381,7 +382,7 @@
 
                           <select class="form-control" name="ing_name" 
                           value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">
-                           <option value="" disabled selected>Available Ingredients</option> //list of measurements from database
+                           <option value="" disabled selected>Ingredients</option> //list of measurements from database
                      
                             <?php
                             $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
@@ -431,10 +432,58 @@
 
 
     </div><!-- ./wrapper -->
-          
+              <!-- RECENTLY ADDED TABLE -->
+              <div class="row">
+            <div class="col-md-6">
+              <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title"><b>STOCKS</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="recentlyadded" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Stock Code</th>
+                        <th>Category/Type</th>
+                        <th>Item Name</th>
+                        <th>In Stock</th>
+                        <th>UOM</th>
+                        <th>Packaging</th>
 
-      <a href="AddIngType.php">Add Ingredient Type</a>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                       <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
+                          NATURAL JOIN unitpackaging");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['stock_id']."</td>"; //stockcode
+                          echo "<td>".$row["stock_type"]."</td>"; //type
+                          echo "<td>".$row["sname"]."</td>"; //itemname
+                          echo "<td>".$row["qty"]."</td>"; //qty
+                          echo "<td>".$row["unit_name"]."</td>"; //unit
+                          echo "<td>".$row["pack_name"]."</td>"; //packaging
+                          echo "</tr>";
 
+                      
+                        }
+                         ?>
+                    
+                     
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+
+       <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
+
+
+         
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 

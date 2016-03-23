@@ -51,7 +51,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="http://localhost/Flaming Wings/MAIN.php" class="logo">
+        <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -258,7 +258,7 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>ADD NEW STOCK</b></h3>
+                  <h3 class="box-title"><b>Add New Stock</b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="AddStock1.php" method="post">
@@ -266,7 +266,7 @@
 
                     <div class="form-group">
                       <label>Quantity</label>
-                      <input type="text" class="form-control" id="qty" placeholder="Quantity" maxlength="30" name="qty">
+                      <input type="number" step="any" min="0" class="form-control" id="qty" placeholder="Quantity" maxlength="30" name="qty" required>
                     </div>
                     
                     <div class="form-group">
@@ -287,7 +287,7 @@
                     <div class="form-group">
                       <label>Packaging</label>
                       <select class="form-control" name="pack_name" required
-                      value="<?php if (isset($_POST['unitM']) && !$flag) echo $_POST['unitM']; ?>">
+                      value="<?php if (isset($_POST['pack_name']) && !$flag) echo $_POST['pack_name']; ?>">
                         <option value="" disabled selected> -- Packaging --</option> 
                      
                         <?php
@@ -301,7 +301,7 @@
                     
 
                      <div class="form-group">
-                      <label for="InputItemName">Stock name</label>
+                      <label for="InputItemName">Stock Name</label>
                       <input type="text" class="form-control" id="InputItemName" placeholder="Enter stock name" maxlength="30" name="sname" required
                       value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
                     </div>
@@ -350,54 +350,14 @@
                 </form>
               </div><!-- /.box -->
 
-              <!-- RECIPES TABLE --> 
-
-       <!--       <div class="row">
-                <div class="col-xs-40">
-                  <div class="box-header">
-                    <h3 class="box-title"><b>RECIPES</b></h3>
-                    </div><!-- /.box-header -->
-       <!--         <div class="box-body">
-                  <table id="recipe" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Recipe Name</th>
-                    
-                      </tr>
-                    </thead>
-                    <tbody>
-                     
-                       <?php
-                     
-                        $sql = mysqli_query($connect, "SELECT * FROM recipe NATURAL JOIN recipetype");
-                        while ($row = mysqli_fetch_array($sql)){
-                          echo "<tr>"; 
-                          echo "<td>".$row['recipe_id']."</td>"; //recipe_id
-                          echo "<td>".$row["recipe_name"]."</td>"; //recipe_name
-                      
-                          echo "</tr>";
-
-                      
-                        }
-                         ?>
-                  
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
-        <!--      </div><!-- /.box -->
-
-             <!--     </div>
-                </div>
-              </div>
 
 
               <!-- RECENTLY ADDED TABLE -->
               <div class="row">
             <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><b>RECENTLY ADDED</b></h3>
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><b>Recently Added Stocks</b></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="recentlyadded" class="table table-bordered table-hover">
@@ -431,30 +391,7 @@
                       
                         }
                          ?>
-                     <!-- <tr>
-                        <td>0001</td>
-                        <td>Rice</td>
-                        <td>Pasta/Rice</td>
-                        <td>10</td>
-                        <td>sack/s</td>
-                       
-                      </tr>
-                      <tr>
-                        <td>0002</td>
-                        <td>Alaska Crema</td>
-                        <td>Dairy</td>
-                        <td>46</td>
-                        <td>piece/s</td>
-                      
-                      </tr>
-                        <tr>
-                        <td>0003</td>
-                        <td>Century Tuna</td>
-                        <td>Canned Goods</td>
-                        <td>2</td>
-                        <td>can/s</td>
-                      
-                      </tr>-->
+                   
                      
                     </tbody>
                   </table>
@@ -465,15 +402,55 @@
 
     </div><!-- ./wrapper -->
           
-          
-
-
-
-
 
           </div><!-- /.tab-pane -->
          
     </div><!-- ./wrapper -->
+
+      <!-- VIEW RECIPES TABLE -->
+        <div class="row">
+            <div class="col-md-6">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+              
+                 <div class="box-header with-border">
+                  <h3 class="box-title"><b>Recipes</b></h3>
+                </div><!-- /.box-header -->
+                 <div class="box-body">
+                
+                  <table id="recipeTable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Recipe Type</th>
+                        <th>Recipe Name</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody> 
+                      
+                        <?php
+                        $stock_code = isset($_GET['recipe_name']) ? $_GET['recipe_name'] : '';
+                        $sql = mysqli_query($connect, "SELECT * FROM recipe NATURAL JOIN recipetype");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['recipe_id']."</td>"; //recipe id
+                          echo "<td>".$row["recipe_type"]."</td>"; //type
+                          echo "<td>".$row["recipe_name"]."</td>"; //recipe name
+                          echo '<td>  <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#view" aria-hidden="true">View</button></td>'; 
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                   
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              </div>
+            </div>
+          </div>
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

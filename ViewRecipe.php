@@ -265,7 +265,7 @@
                                  $sql_query = "SELECT * FROM recipe"; 
                                     mysqli_query($connect, $sql_query); 
                                
-                                    echo "<td>" .$_POST['recipe_name'];
+                                    echo "<td>" .$_POST['recipe_name']; "</td>"
                                     
                                 ?> 
                                 <a href="ViewRecipe.php">Go Back</a>
@@ -307,7 +307,7 @@
                       
                         <?php
                         $stock_code = isset($_GET['recipe_name']) ? $_GET['recipe_name'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM recipe NATURAL JOIN recipetype");
+                        $sql = mysqli_query($connect, "SELECT * FROM recipe r JOIN recipetype rtype WHERE r.recipe_typeid=rtype.recipe_typeid");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['recipe_id']."</td>"; //recipe id
