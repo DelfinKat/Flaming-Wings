@@ -361,7 +361,6 @@
                           echo "<td>".$row["stock_type"]."</td>"; //type
                           echo "<td>".$row["sname"]."</td>"; //itemname
                           echo "<td>".$row["qty"]."</td>"; //qty
-                          echo "<td>".$row["unit_name"]."</td>"; //unit
                           echo '<td>  <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#edit" aria-hidden="true">Verify</button></td>'; 
                           echo "</tr>";
 

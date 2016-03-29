@@ -274,7 +274,6 @@
                         <th>Stock Category/Type</th>
                         <th>Item Name</th>
                         <th>Remaining Quantity</th>
-                        <th>Date Received</th>
                         <th>Actual Quantity</th>
                         <th>Date Verified</th>
                       </tr>
