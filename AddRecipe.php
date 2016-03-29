@@ -78,10 +78,13 @@
         console.log("hi"); 
             e.preventDefault(); 
 
-            $(ingredientwrapper).append('<tr><td><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if (isset($_POST["qty"])) echo $_POST["qty"]; ?>"></td>' 
-              + '<td><select class="form-control" name="unitM" value="<?php if (isset($_POST["unitM"])) echo $_POST["unitM"]; ?>"> <option value="" disabled selected>Unit of Measurement</option>'
-              <?php
-              $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+            $(ingredientwrapper).append('<tr><td><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="'
+              + <?php if (isset($_POST["qty"])) echo $_POST["qty"]; ?>
+              + '"></td>' 
+              + '<td><select class="form-control" name="unitM" value="'
+              + <?php if (isset($_POST["unitM"])) echo $_POST["unitM"]; ?>
+              + '"> <option value="" disabled selected>Unit of Measurement</option>'
+              + <?php $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
               while ($row = mysqli_fetch_array($sql)){
               echo "<option value=" . $row["unit_id"] . ">" . $row["unit_name"] . "</option>";}?></select></td>
               + '<td> <select class="form-control" name="ing_name"'

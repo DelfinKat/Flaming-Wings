@@ -364,13 +364,18 @@
                      
                        <?php
                        
-                        $sql = mysqli_query($connect, "SELECT conv_id, qty1, unit_name, qty2 FROM conversion c JOIN unitmeasurement u WHERE c.unit_id1 = u.unit_id ");
+                        $sql = mysqli_query($connect, "SELECT conv_id, qty1, u.unit_name as uname1, qty2, u2.unit_name as uname2 FROM conversion as c JOIN unitmeasurement as u on c.unit_id1 = u.unit_id JOIN unitmeasurement as u2 on c.unit_id2 = u2.unit_id ");
+                        if (!$sql) {
+                              printf("Error: %s\n", mysqli_error($connect));
+                              exit();
+                          }
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['conv_id']."</td>"; //conv id
                           echo "<td>".$row["qty1"]."</td>"; //qty1
-                          echo "<td>".$row['unit_name']."</td>"; //unit_id1
+                          echo "<td>".$row['uname1']."</td>"; //unit_id1
                           echo "<td>".$row["qty2"]."</td>"; //qty2
+                          echo "<td>".$row['uname2']."</td>"; //unit_id1
                       
                           echo "</tr>";
 

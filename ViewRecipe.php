@@ -262,8 +262,9 @@
                 <table id="viewTable" class="table table-bordered table-hover" name="viewTable">
                           <tbody>
                                 <?php
-                                 $sql_query = "SELECT * FROM recipe"; 
+                                 $sql_query = "SELECT recipe_name FROM recipe WHERE recipe_id=1"; 
                                     mysqli_query($connect, $sql_query); 
+                                    
                                
                                     echo "<td>" .$_POST['recipe_name']; "</td>"
                                     

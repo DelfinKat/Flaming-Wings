@@ -258,9 +258,9 @@
                 <form class="form-horizontal">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputQuery" class="col-sm-2 control-label">Recipe Name</label>
+                      <label for="query" class="col-sm-2 control-label">Recipe ID</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter Recipe name">
+                        <input type="text" class="form-control" id="query" name="query" placeholder="Enter Recipe ID">
                       </div>
                     </div>
                   <div class="box-footer">

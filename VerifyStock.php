@@ -267,12 +267,12 @@
                       <label>Stock Name</label>
                       <select class="form-control" name="sname" required
                       value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
-                        <option value="" disabled selected> -- ID -- Stock Name -- Qty --</option> 
+                        <option value="" disabled selected> -- ID -- Stock Name -- In-stock --</option> 
                         
                         <?php
-                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, pack_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
+                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, unit_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
                         while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['pack_name']. "</option>"; 
+                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['unit_name']. "</option>"; 
                         }
                          ?>
                       </select>
@@ -294,7 +294,7 @@
                     
                     <div class="form-group">
                       <label for="InputRemarks">Remarks</label>
-                      <input type="text" class="form-control" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
+                      <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
                     </div>
                   
 

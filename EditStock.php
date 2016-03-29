@@ -357,9 +357,9 @@
                 <form class="form-horizontal">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Stock code</label>
+                      <label for="query" class="col-sm-2 control-label">Stock code</label>
                       <div class="col-sm-8">
-                        <input type="name" class="form-control" id="inputEmail3" placeholder="Enter stock code">
+                        <input type="text" class="form-control" id="query" placeholder="Enter stock code">
                       </div>
                     </div>
                   <div class="box-footer">

@@ -258,7 +258,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title"><b>Inventory Report</b>
+                  <h3 class="box-title"><b>Inventory Report for <?php $month = date("F Y"); echo $month;?></b>
                   </br></br>
                   <small class="pull-right">
                   <?php 
