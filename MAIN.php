@@ -240,7 +240,6 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
-                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>

@@ -243,73 +243,154 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
-                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>
 
            <!--SEARCH--> 
-    <div class="content-wrapper">
-       <section cl ass="content">
-          <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"><b>Verify Stock</b></h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" action="VerifyStock1.php" method="post">
+  <div class="content-wrapper">
+       <section class="content">
+        <!-- START OF MODAL -->
+        <div id="edit" class="modal fade">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                        <b><h3>Verify Stock</h3></b>
+                         
+                </div>
+               <div class="modal-body">
+
+                 <form class="form-horizontal" action="replenishstock1.php"  method="post" role="form" name="replenishTable">
                   <div class="box-body">
-                   
-                     <div class="form-group">
-                      <label>Stock Name</label>
-                      <select class="form-control" name="sname" required
-                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
-                        <option value="" disabled selected> -- ID -- Stock Name -- In-stock --</option> 
-                        
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, unit_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['unit_name']. "</option>"; 
-                        }
-                         ?>
-                      </select>
-                      
-                    </div>
-                      <div class="form-group">
-                      <label for="InputQty">Actual Quantity</label>
-                      <input type="number" min="0" step="any" class="form-control" id="InputQty" placeholder="Quantity" name="qty" required>
-                    </div>
 
-                    <!-- DATE -->
-                      <div class="form-group">
-                        <label for="inputdtReceived">Date Verified</label>
-                       
-                        <input type="date" class="form-control" id="inputdtReceived" name="dtVerified" required value="<?php echo date('Y-m-d'); ?>" />
-                        
-                       </div>  
-
+                    <div class="form-group">
+                      <label for="inputRemarks" class="col-sm-2 control-label">Stock Name</label>
+                      <div class="col-sm-10">
+                         <textarea class="form-control" rows="3" placeholder="Enter stock name" id="stockName"></textarea>
+                      </div>
+                    </div>
                     
                     <div class="form-group">
-                      <label for="InputRemarks">Remarks</label>
-                      <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
+                      <label for="inputQty" class="col-sm-2 control-label">Actual Quantity</label>
+                      <div class="col-sm-4">
+                        <input type="number" step="any" min="0" class="form-control" id="actualQty" placeholder="Enter actual quantity" required>
+                      </div>
                     </div>
-                  
 
-
-
+                     <div class="form-group">
+                      <label for="inputdtReceived" class="col-sm-2 control-label">Date Verified (dd/mm/yy)</label>
+                      <div class="col-sm-10">
+                        <input type="date" class="form-control" id="dateVerified" required value="<?php echo date('Y-m-d'); ?>" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputRemarks" class="col-sm-2 control-label">Remarks</label>
+                      <div class="col-sm-10">
+                         <textarea class="form-control" rows="3" placeholder="Remarks ..." id="inputRemarks"></textarea>
+                      </div>
+                    </div>
+                    
+                  </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Verify Stock</button>
-                  </div>
+                    <button type="submit" class="btn btn-info pull-right">Verify</button>
+                  </div><!-- /.box-footer -->
                 </form>
+              </div>
+               </div>
+             </div>
+           </div>
+       
+            <!-- END OF MODAL -->
+
+        
+        
+          <form action="#" method="post" class="sidebar-form">
+            <div class="col-xs-10">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><b>SEARCH STOCK</b></h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Stock name</label>
+                      <div class="col-sm-8">
+                        <input type="name" class="form-control" id="stockName" placeholder="Enter stock code">
+                      </div>
+                    </div>
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-info pull-right">Search</button>
+                  </div><!-- /.box-footer -->
+                </form>
+              </div>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>VERIFY STOCK</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="stocktable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                         </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="recentlyadded" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Stock Name</th>
+                        <th>Actual Quantity</th>
+                        <th>Date Verified</th>
+                        <th>Remarks</th>
+                        
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                       <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['stock_id']."</td>"; //stockcode
+                          echo "<td>".$row["stock_type"]."</td>"; //type
+                          echo "<td>".$row["sname"]."</td>"; //itemname
+                          echo "<td>".$row["qty"]."</td>"; //qty
+                          echo "<td>".$row["unit_name"]."</td>"; //unit
+                          echo '<td>  <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#edit" aria-hidden="true">Verify</button></td>'; 
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                        
+                    </tbody>
+                  </table>
+                   <div class="box-footer">
+                   
+                  </div>
+                </div><!-- /.box-body -->
               </div><!-- /.box -->
 
 
 
+            </section><!-- right col -->
+          </div><!-- /.row (main row) -->
+
+
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+
 
     </div><!-- ./wrapper -->
+ 
           
           
 
