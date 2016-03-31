@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Add Packaging</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -37,12 +37,12 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- PHP --> 
 
-    <?php 
-    include("dbconnection.php"); 
-    ?>
-   
+   <!-- PHP --> 
+   <?PHP 
+   include("dbconnection.php")
+
+   ?>
 
     <!-- HEADER -->
   </head>
@@ -51,7 +51,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="MAIN.php" class="logo">
+        <a href="http://localhost/Flaming Wings/MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Flaming Wings</b></span>
@@ -165,8 +165,8 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <!--DASHBOARD-->
-            <li class="active treeview">
-              <a href="MAIN.php">
+            <li class="treeview">
+              <a href="http://localhost/Flaming-Wings/MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -175,7 +175,7 @@
 
 
 
-           <!---RECIPE -->
+            <!---RECIPE -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-book"></i>
@@ -227,12 +227,12 @@
               <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/InventoryReport.php"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
                 <li><a href="http://localhost/Flaming-Wings/VerifyStock.php"><i class="fa fa-circle-o"></i>Stock Controller</a></li>
-                 <li><a href="http://localhost/Flaming-Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
+                <li><a href="http://localhost/Flaming-Wings/MostSold.php"><i class="fa fa-circle-o"></i> Most sold order</a></li>
               </ul>
             </li>
         <!-- /.sidebar -->
 
-           <!--CONVERSION-->
+         <!--CONVERSION-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-calculator"></i> 
@@ -243,99 +243,128 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>
 
-
-
-       <!--SEARCH--> 
-   <div class="content-wrapper">
-       <section cl ass="content">
+           <!--SEARCH--> 
+    <div class="content-wrapper">
+       <section class="content">
           <div class="row">
             <!-- left column -->
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>Replenish Stock</b></h3>
+                  <h3 class="box-title"><b>ADD PACKAGING </b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="replenishstock1.php" method="post">
+                <form role="form" action="AddPackaging1.php" method="post">
                   <div class="box-body">
-                   
-                     <div class="form-group">
-                      <label>Stock Name</label>
-                      <select class="form-control" name="sname" required
-                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
-                        <option value="" disabled selected> -- ID -- Stock Name -- In-stock --</option> 
-                        
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, unit_name, pack_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['unit_name']. " ".$row['pack_name']. "</option>"; 
-                        }
-                         ?>
-                      </select>
-                      
-                    </div>
-                      <div class="form-group">
-                      <label for="InputQty">Quantity</label>
-                      <input type="number" min="0" step="any" class="form-control" id="InputQty" placeholder="Quantity" name="qty" required>
-                    </div>
 
-                    <!-- DATE -->
-                      <div class="form-group">
-                        <label for="inputdtReceived">Date Received</label>
-                       
-                        <input type="date" class="form-control" id="inputdtReplenished" name="dtReceived" required value="<?php echo date('Y-m-d'); ?>" />
-                        
-                       </div>  
-
-                    
                     <div class="form-group">
-                      <label for="InputRemarks">Remarks</label>
-                      <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
+                      <label for="uom" >Enter new Packaging</label>
+                      <input type="text" class="form-control" id="pack_name" maxlength="30" name="pack_name"
+                       value="<?php if (isset($_POST['pack_name']) && !$flag) echo $_POST['pack_name']; ?>" required>
+
                     </div>
-                  
-                   
+                    
 
-                  
-
-
+                  </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Replenish Stock</button>
+                    <button type="submit" class="btn btn-primary">Add New Packaging</button>
                   </div>
                 </form>
               </div><!-- /.box -->
 
+         
+
+
+              <!-- RECENTLY ADDED TABLE -->
+              <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>RECENTLY ADDED</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="uomadded" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Packaging Name</th>
+                       
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                       <?php
+                       
+                        $sql = mysqli_query($connect, "SELECT * FROM unitpackaging ORDER BY pack_id desc");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['pack_id']."</td>"; //unit id
+                          echo "<td>".$row["pack_name"]."</td>"; //unit name
+                        
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                     <!-- <tr>
+                        <td>0001</td>
+                        <td>Rice</td>
+                        <td>Pasta/Rice</td>
+                        <td>10</td>
+                        <td>sack/s</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>0002</td>
+                        <td>Alaska Crema</td>
+                        <td>Dairy</td>
+                        <td>46</td>
+                        <td>piece/s</td>
+                      
+                      </tr>
+                        <tr>
+                        <td>0003</td>
+                        <td>Century Tuna</td>
+                        <td>Canned Goods</td>
+                        <td>2</td>
+                        <td>can/s</td>
+                      
+                      </tr>-->
+                     
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
 
 
 
     </div><!-- ./wrapper -->
           
-
-
-    
-      
-    </div><!-- ./wrapper -->
-
-
-
-
-          <!---TABLE FOR STOCK-->
           
 
-    </div><!-- ./wrapper -->
 
+
+
+
+          </div><!-- /.tab-pane -->
+         
+    </div><!-- ./wrapper -->
+        <a href="AddStock.php" class="btn btn-info" role="button"><< Go Back to Add Stock</a>
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-      $.widget.bridge('uibutton', $.ui.button); 
+      $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -366,33 +395,5 @@
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-
-    <script>
-
-$(document).ready(function(e) {
-  $("#search").on("input", function {
-
-$.ajax({
-
-  url: "try.php",
-  data: {
-
-    namengvalue : "value",
-    namengvalue2 : "value2",
-    $("#search").val()
-  },
-
-  dataType: "json",
-  type: "post",
-  success: function(data) {
-    alert(data.myrealarr[0]);
-  }
-
-});
-
-  });
-});
-
-    </script>
   </body>
 </html>

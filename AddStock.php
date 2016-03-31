@@ -244,6 +244,7 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>
@@ -365,7 +366,7 @@
                         <th>Stock Code</th>
                         <th>Category/Type</th>
                         <th>Item Name</th>
-                        <th>Qty</th>
+                        <th>In-Stock</th>
                         <th>UOM</th>
                         <th>Packaging</th>
 
@@ -376,7 +377,7 @@
                        <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
                         $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
-                          NATURAL JOIN unitpackaging");
+                          NATURAL JOIN unitpackaging ORDER BY stock_id DESC");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
@@ -406,8 +407,10 @@
                    </div>
                     </tfoot>  --> 
                   </table>
+
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+
 
 
 
@@ -457,6 +460,8 @@
                    
                     </tbody>
                   </table>
+                   <a href="AddPackaging.php" class="btn btn-info" role="button">Add Packaging</a>
+                   <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>

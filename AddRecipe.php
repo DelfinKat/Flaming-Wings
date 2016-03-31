@@ -317,6 +317,7 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
+                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>
@@ -482,7 +483,7 @@
               </div><!-- /.box -->
             </div>
 
-       <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
+       
 
 
          
