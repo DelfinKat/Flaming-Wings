@@ -52,7 +52,7 @@
         <a href="MAIN.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Flaming Wings</b></span>
+          <img src="logoo.jpg" alt="Mountain View" style="width:200px;height:50px;">
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">

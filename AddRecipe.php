@@ -68,6 +68,41 @@
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+
+
+    
+
+
+    <!-- JAVASCRIPT NIGGA -->
+    <script type="text/javascript">
+    $(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if(isset($_POST['qty'])) echo $_POST['qty']; ?>"><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>;
+    var fieldHTML2 = <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>"><option value="" disabled selected>Unit of Measurement</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html
+    var fieldHTML3 = <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>"><option value="" disabled selected>Ingredients</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html 
+    var x = 1; //Initial field counter is 1
+    $(addButton).click(function(){ //Once add button is clicked
+        if(x < maxField){ //Check maximum number of input fields
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); // Add field html
+            $(wrapper).append(fieldHTML2);
+            $(wrapper).append(fieldHTML3);
+        }
+    });
+    $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+    });
+    </script>
+
+
 
     <script>
       //var button = $();
@@ -94,12 +129,12 @@
               <?php
               $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
               while ($row = mysqli_fetch_array($sql)){
-              echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>); 
+              echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>);              
       });
       }); 
-      //$(".addingredient").click(function(){
-        //alert("hehehehe");
-      //});
+      $(".addingredient").click(function(){
+        alert("hehehehe");
+    });
     </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -110,13 +145,57 @@
     <![endif]-->
      <!--<script src="AddIngButton.js"></script>
 
+
+
     <!-- PHP --> 
    <?PHP 
    include("dbconnection.php")
 
    ?>
 
-   
+   <script type="text/JAVASCRIPT">
+   function addTextNigga(){
+      var div = document.getElementById('div_quotes');
+      div.innerHTML += "<textarea name = 'new quote[]' />";
+      div.innerHTML += "\n <br />";
+
+   }
+
+  </script>
+
+   <script type="text/JAVASCRIPT">
+    function addTextArea(){
+      var div= document.getElementById('div_quotes');
+      div.innerHTML += "<textarea name = 'new quote[] ' />";
+      div.innerHTML += "\n<br />";
+    }
+
+    </script>
+
+    <script type="text/JAVASCRIPT">
+    function addText(){
+    $(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
+    
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+}
+   </script>
+ 
+
 
     <!-- HEADER -->
   </head>
@@ -128,7 +207,7 @@
         <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Flaming Wings</b></span>
+          <img src="logoo.jpg" alt="Mountain View" style="width:200px;height:50px;">
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -317,10 +396,13 @@
 
                <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/Conversion.php"><i class="fa fa-circle-o"></i>Conversion Table</a></li>
-                <li><a href="http://localhost/Flaming-Wings/AddUOM.php"><i class="fa fa-circle-o"></i> Add Unit of Measurement</a></li>
               </ul>
             </li>
       </aside>
+
+
+
+
 
        <!--SEARCH--> 
     <div class="content-wrapper">
@@ -355,19 +437,72 @@
                             }
                              ?>
                       </select>
+
+
+
+
                     
                     <!--- INGREDIENTS --> 
                     <b>Ingredients</b>
                     <table id="addingredient" class="table table-bordered table-hover" name="ingTable">
                        <td>
-                          <input type="button" class="addingredient" value="+"/>
+                          <a href = "flaminghoe.jsp" input type="button" class="addingredient"> Add more Ingredients </a>
                         </td>
                      <tr name="ingTable">
 
-                    <td>
+                    
+                    <!-- KOKO -->
+                    <div class="field_wrapper">
+                    <div>
+                    
+                    
+                    
+                    <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if(isset($_POST['qty'])) echo $_POST['qty']; ?>" >
+                   
+
+
+
+                    <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>" > <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
+                            <?php
+                            $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+                            while ($row = mysqli_fetch_array($sql)){
+                            echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
+                            }
+                             ?>
+                          </select>
+                    
+
+
+
+                    <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">  <option value="" disabled selected>Ingredients</option> //list of measurements from database
+                            <?php
+                            $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
+                            while ($row = mysqli_fetch_array($sql)){
+                            echo "<option value=\"" . $row['ingName_id'] . "\">" . $row['ing_name'] . "</option>";
+                            }
+                             ?>
+                          </select>     
+                       
+
+                    
+                    <a href="javascript:void(0);" class="add_button" title="Add field">Click here to add more ingredients</a>
+
+                    </div>
+                    </div>
+
+
+
+
+
+                      <!--Quantity-->
+                      <td>
                           <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty"
                           value="<?php if (isset($_POST['qty'])) echo $_POST['qty']; ?>">
                       </td>
+
+
+
+                     <!--UOM-->
                       <td>
                           <select class="form-control" name="unitM" 
                           value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
@@ -381,8 +516,11 @@
                              ?>
                           </select>
                         </td>
-                        <td>
+                       
 
+
+                        <!--Ingredients-->
+                        <td>
                           <select class="form-control" name="ing_name" 
                           value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">
                            <option value="" disabled selected>Ingredients</option> //list of measurements from database
@@ -395,35 +533,56 @@
                              ?>
                           </select>
                         </td>
+
+
+
+                        <HEAD>
+                          <SCRIPT language="javascript">
+                             function add(type) {
+ 
+    //Create an input type dynamically.
+                              var element = document.createElement("input");
+ 
+    //Assign different attributes to the element.
+                              element.setAttribute("type", type);
+                              element.setAttribute("value", type);
+                              element.setAttribute("name", type);
+ 
+ 
+                              var foo = document.getElementById("fooBar");
+ 
+    //Append the element in page (in span).
+                              foo.appendChild(element);
+ 
+                         }
+                          </SCRIPT>
+                      </HEAD>
+                        <BODY>
+                         <FORM>
+
+                           <BR/>
+                <SELECT name="element">
+                   <OPTION value="button">Button</OPTION>
+                   <OPTION value="text">Textbox</OPTION>
+                   <OPTION value="radio">Radio</OPTION>
+               </SELECT>
+
+            
+               var fieldHTML2 = <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>"><option value="" disabled selected>Unit of Measurement</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html
+               var fieldHTML3 = <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>"><option value="" disabled selected>Ingredients</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html 
+ 
+                      </FORM>
+                  </BODY>
+
+                      </p>
+                  </div>
+
+<!-- Dito yung code dati / just in case-->
                        
-                      </tr>
-                     
+                      </tr>    
                  </table>
                     </div>
 
-               
-                  <!-- END OF INGREDIENTS--> 
-                  <!-- button to add ingredient row--> 
-               <!--   <button class="btn btn-default btn-sm" onclick="addIng()"><i class="fa fa-fw fa-plus"></i>Add Ingredient</button>
-                  
-             <!-- JAVASCRIPT to add ingredient row --> 
-            <!--      <script>
-                   function addIng(){ 
-                      var table = document.getElementById("ingTable"); 
-                       var row = table.insertRow(0);
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-                        var cell3 = row.insertCell(2); 
-                     
-                        cell1.innerHTML = "UR MOM"; 
-                        cell2.innerHTML = "NEW CELL2";
-                        cell3.innerHTML = "NEW CELL3";
-                   }
-                   </script>
-                  </div><!-- /.box-body -->
-
-                 
-             
                 </form>
                
               </div><!-- /.box -->
@@ -483,11 +642,12 @@
               </div><!-- /.box -->
             </div>
 
-       
+       <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
 
 
          
       <div class="control-sidebar-bg"></div>
+
     </div><!-- ./wrapper -->
 
      <!-- jQuery 2.1.4 -->
