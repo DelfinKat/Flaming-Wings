@@ -207,7 +207,7 @@
         <a href="MAIN.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <!-- logo for regular state and mobile devices -->
-          <img src="logoo.jpg" alt="Mountain View" style="width:200px;height:50px;">
+          <span class="logo-lg"><b>Flaming Wings</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -566,10 +566,10 @@
                    <OPTION value="text">Textbox</OPTION>
                    <OPTION value="radio">Radio</OPTION>
                </SELECT>
-
-            
-               var fieldHTML2 = <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>"><option value="" disabled selected>Unit of Measurement</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html
-               var fieldHTML3 = <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>"><option value="" disabled selected>Ingredients</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html 
+ 
+            <INPUT type="button" value="Add Ingredient" onclick="add(document.forms[0].element.value)"/>
+ 
+             <span id="fooBar">&nbsp;</span>
  
                       </FORM>
                   </BODY>
