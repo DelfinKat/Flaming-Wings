@@ -296,6 +296,9 @@ if (empty($_POST['query'])) {
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Unit of Measurement</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>User</th>
                       </tr>
                     </thead>
                     <tbody>

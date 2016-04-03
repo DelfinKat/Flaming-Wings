@@ -276,6 +276,8 @@
                         <th>Remaining Quantity</th>
                         <th>Actual Quantity</th>
                         <th>Date Verified</th>
+                        <th>Time</th>
+                        <th>User</th>
                       </tr>
                     </thead>
                     <tbody>

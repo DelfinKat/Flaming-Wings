@@ -78,6 +78,7 @@
 
     <!-- JAVASCRIPT NIGGA -->
     <script type="text/javascript">
+
     $(document).ready(function(){
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
@@ -96,7 +97,7 @@
     });
     $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
+        $(this).parent('div').remove(); x--; //Remove field html
         x--; //Decrement field counter
     });
     });
@@ -115,7 +116,7 @@
 
             $(ingredientwrapper).append('<tr><td><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="'
               + <?php if (isset($_POST["qty"])) echo $_POST["qty"]; ?>
-              + '"></td>' 
+              + '"></td></tr>' 
               + '<td><select class="form-control" name="unitM" value="'
               + <?php if (isset($_POST["unitM"])) echo $_POST["unitM"]; ?>
               + '"> <option value="" disabled selected>Unit of Measurement</option>'
@@ -137,9 +138,7 @@
     });
     </script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
