@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Search Stock</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -264,7 +264,7 @@
                     <div class="form-group">
                       <label for="inputQuery" class="col-sm-2 control-label">Stock code</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter stock code">
+                        <input type="text" class="form-control" id="inputQuery" name="query" placeholder="Enter stock code" required>
                       </div>
                     </div>
                   <div class="box-footer">

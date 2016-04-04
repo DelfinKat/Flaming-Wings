@@ -5,11 +5,11 @@ include("dbconnection.php");
 //$query = mysqli_real_escape_string($_POST['query']); 
 
 if (empty($_POST['query'])) { 
-    echo 'No results found.'; 
-
+    echo 'No results found.';
+   
     }else{
      
-      $sql = "SELECT stock_id, stock_type, sname, qty, unit_name FROM stock s, stocktype st, unitmeasurement unitM WHERE s.stocktype_id=st.stocktype_id AND unitM.unit_id=s.unit_id AND s.stock_id LIKE '%".$_POST['query']."%'";
+      $sql = "SELECT stock_id, stock_type, sname, qty, unit_name FROM stock s, stocktype st, unitmeasurement unitM WHERE s.stocktype_id=st.stocktype_id AND unitM.unit_id=s.unit_id AND s.stock_id LIKE '".$_POST['query']."'";
       $r_query = mysqli_query($connect, $sql);
     }
 
@@ -185,7 +185,7 @@ if (empty($_POST['query'])) {
 
             <!--DASHBOARD-->
             <li class="active treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>

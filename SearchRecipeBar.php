@@ -9,7 +9,7 @@ if (empty($_POST['query'])) {
 
     }else{
 
-      $sql = "SELECT recipe_id, recipe_name, recipe_type FROM recipe r, recipetype rt WHERE r.recipe_typeid=rt.recipe_typeid AND recipe_id LIKE '%".$_POST['query']."%'"; 
+      $sql = "SELECT recipe_id, recipe_name, recipe_type FROM recipe r, recipetype rt WHERE r.recipe_typeid=rt.recipe_typeid AND recipe_id LIKE '".$_POST['query']."'"; 
      
       
       $r_query = mysqli_query($connect, $sql);
