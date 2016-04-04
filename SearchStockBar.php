@@ -3,15 +3,9 @@ header ("url=SearchStock.php");
 include("dbconnection.php"); 
 
 //$query = mysqli_real_escape_string($_POST['query']); 
+$r_query = "";
 
-if (empty($_POST['query'])) { 
-    echo 'No results found.';
-   
-    }else{
-     
-      $sql = "SELECT stock_id, stock_type, sname, qty, unit_name FROM stock s, stocktype st, unitmeasurement unitM WHERE s.stocktype_id=st.stocktype_id AND unitM.unit_id=s.unit_id AND s.stock_id LIKE '".$_POST['query']."'";
-      $r_query = mysqli_query($connect, $sql);
-    }
+
 
 
 ?>
@@ -21,7 +15,7 @@ if (empty($_POST['query'])) {
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Search Stock</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -278,6 +272,18 @@ if (empty($_POST['query'])) {
                   <h3 class='box-title'><b>Results</b></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
+                  <?php 
+
+                if (empty($_POST['query']) || $_POST["query"] == "0") { 
+                  echo "There are no results.";
+               
+                 
+                  }else{
+                   
+                    $sql = "SELECT stock_id, stock_type, sname, qty, unit_name FROM stock s, stocktype st, unitmeasurement unitM WHERE s.stocktype_id=st.stocktype_id AND unitM.unit_id=s.unit_id AND s.stock_id LIKE '".$_POST['query']."'";
+                    $r_query = mysqli_query($connect, $sql);
+                  
+                  ?>
                   <?php
 
                   $numrows = mysqli_num_rows($r_query); 
@@ -321,6 +327,8 @@ while ($row = mysqli_fetch_array($r_query)){
 
 }
 }
+}
+
 ?>
                     </tbody>
                   </table>
