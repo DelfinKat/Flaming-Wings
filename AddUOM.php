@@ -259,7 +259,7 @@
                   <h3 class="box-title"><b>ADD UNIT OF MEASUREMENT (UOM) </b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="AddUOM1.php" method="post">
+                <form role="form" action="Conversion2.php" method="post">
                   <div class="box-body">
 
                     <div class="form-group">

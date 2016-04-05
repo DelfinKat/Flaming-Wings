@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Conversion</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -471,7 +471,7 @@
                      
                        <?php
                        
-                        $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
+                        $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement order by unit_id DESC");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['unit_id']."</td>"; //unit id

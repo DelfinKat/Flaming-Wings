@@ -302,7 +302,7 @@
                     
                     <div class="form-group">
                       <label for="InputRemarks">Person who verified</label>
-                      <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Enter name" name="remarks" required>
+                      <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Enter name" name="personVerify" required>
                     </div>
 
 

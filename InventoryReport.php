@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Inventory Report</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -273,11 +273,8 @@
                         <th>Stock Code</th>
                         <th>Stock Category/Type</th>
                         <th>Item Name</th>
-                        <th>Remaining Quantity</th>
-                        <th>Actual Quantity</th>
-                        <th>Date Verified</th>
-                        <th>Time</th>
-                        <th>User</th>
+                        <th>End Inventory</th>
+                        <th>Amount </th>
                       </tr>
                     </thead>
                     <tbody>

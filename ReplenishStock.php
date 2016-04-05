@@ -314,7 +314,63 @@
 
 
     </div><!-- ./wrapper -->
-          
+
+           <!-- RECENTLY ADDED TABLE -->
+              <div class="row">
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><b>Recently Replenished Stocks</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="recentlyadded" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Replenish ID</th>
+                        <th>Stock ID</th>
+                        <th>Replenish Qty</th>
+                        <th>Stock Name</th>
+                        <th>Remarks</th>
+                    
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                       <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT replenish_id, s.stock_id, r.qty, sname, remarks FROM replenishstock r, stock s where r.stock_id=s.stock_id  order by replenish_id DESC ");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['replenish_id']."</td>"; 
+                          echo "<td>".$row['stock_id']."</td>"; 
+                          echo "<td>".$row["qty"]."</td>"; 
+                          echo "<td>".$row["sname"]."</td>"; 
+                          echo "<td>".$row["remarks"]."</td>"; 
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+              
+                 
+                    </tbody>
+                   
+                <!--      <tfoot>
+                         <div class="box-body">
+                    <ul class="pagination">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                  </ul>
+                   </div>
+                    </tfoot>  --> 
+                  </table>
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
 
 
     
@@ -322,12 +378,16 @@
     </div><!-- ./wrapper -->
 
 
+             
+
 
 
           <!---TABLE FOR STOCK-->
           
 
     </div><!-- ./wrapper -->
+
+
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

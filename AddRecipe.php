@@ -80,14 +80,16 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
+    console.log("Hello");
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
-    var fieldHTML = <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if(isset($_POST['qty'])) echo $_POST['qty']; ?>"><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>;
-    var fieldHTML2 = <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>"><option value="" disabled selected>Unit of Measurement</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html
-    var fieldHTML3 = <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>"><option value="" disabled selected>Ingredients</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a>; //New input field html 
+    var fieldHTML =  '<div><input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="InputQty" ><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a></div>';
+    var fieldHTML2 = '<div><select class="form-control" name="untiM" id=""><option value="Kilogram">Kilogram</option><option value="Grams">Grams</options> <option value="" disabled selected>Unit of Measurement</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a></div>'; //New input field html
+    var fieldHTML3 = '<div> <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">  <option value="" disabled selected>Ingredients</option></select><a href="javascript:void(0);" class="remove_button" title="Remove field"> REMOVE </a></div>'; //New input field html 
     var x = 1; //Initial field counter is 1
     $(addButton).click(function(){ //Once add button is clicked
+        console.log("Hello");
         if(x < maxField){ //Check maximum number of input fields
             x++; //Increment field counter
             $(wrapper).append(fieldHTML); // Add field html
@@ -97,7 +99,7 @@
     });
     $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
         e.preventDefault();
-        $(this).parent('div').remove(); x--; //Remove field html
+        $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
     });
@@ -105,10 +107,20 @@
 
 
 
+
+
+
+
+
+
     <script>
       //var button = $();
       var ingredientwrapper = ('tr[name=ingTable]');
       $(document).ready(function() {
+
+
+
+
         $(".addingredient").on("click", function(e){
         console.log("hifusdfh");
         console.log("hi"); 
@@ -130,7 +142,7 @@
               <?php
               $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
               while ($row = mysqli_fetch_array($sql)){
-              echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>);              
+              echo "<option value=" . $row["ingName_id"] . ">" . $row["ing_name"] . "</option>";}?></select></td></tr>");              
       });
       }); 
       $(".addingredient").click(function(){
@@ -152,48 +164,6 @@
 
    ?>
 
-   <script type="text/JAVASCRIPT">
-   function addTextNigga(){
-      var div = document.getElementById('div_quotes');
-      div.innerHTML += "<textarea name = 'new quote[]' />";
-      div.innerHTML += "\n <br />";
-
-   }
-
-  </script>
-
-   <script type="text/JAVASCRIPT">
-    function addTextArea(){
-      var div= document.getElementById('div_quotes');
-      div.innerHTML += "<textarea name = 'new quote[] ' />";
-      div.innerHTML += "\n<br />";
-    }
-
-    </script>
-
-    <script type="text/JAVASCRIPT">
-    function addText(){
-    $(document).ready(function() {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-    
-    var x = 1; //initlal text box count
-    $(add_button).click(function(e){ //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-        }
-    });
-    
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
-}
-   </script>
- 
 
 
     <!-- HEADER -->
@@ -442,12 +412,14 @@
 
                     
                     <!--- INGREDIENTS --> 
-                    <b>Ingredients</b>
+                 
                     <table id="addingredient" class="table table-bordered table-hover" name="ingTable">
-                       <td>
-                          <a href = "flaminghoe.jsp" input type="button" class="addingredient"> Add more Ingredients </a>
-                        </td>
                      <tr name="ingTable">
+
+
+
+
+
 
                     
                     <!-- KOKO -->
@@ -455,12 +427,12 @@
                     <div>
                     
                     
-                    
+                    <b>Quantity</b>
                     <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty" value="<?php if(isset($_POST['qty'])) echo $_POST['qty']; ?>" >
                    
 
 
-
+                    <b>Unit of measurement</b>
                     <select class="form-control" name="untiM" value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>" > <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
                             <?php
                             $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
@@ -468,11 +440,9 @@
                             echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
                             }
                              ?>
-                          </select>
-                    
-
-
-
+                      </select>
+                                        
+                    <b>Ingredients</b>
                     <select class="form-control" name="ing_name" value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">  <option value="" disabled selected>Ingredients</option> //list of measurements from database
                             <?php
                             $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
@@ -480,99 +450,15 @@
                             echo "<option value=\"" . $row['ingName_id'] . "\">" . $row['ing_name'] . "</option>";
                             }
                              ?>
-                          </select>     
-                       
+                      </select>     
+                     
 
                     
-                    <a href="javascript:void(0);" class="add_button" title="Add field">Click here to add more ingredients</a>
+                    <a href="javascript:void(0);" id="javanigga" class="add_button" title="Add field">Click here to add more ingredients</a>
+           <!--HERE-->
 
                     </div>
                     </div>
-
-
-
-
-
-                      <!--Quantity-->
-                      <td>
-                          <input type="number" class="form-control" id="InputQty" placeholder="Quantity" name="qty"
-                          value="<?php if (isset($_POST['qty'])) echo $_POST['qty']; ?>">
-                      </td>
-
-
-
-                     <!--UOM-->
-                      <td>
-                          <select class="form-control" name="unitM" 
-                          value="<?php if (isset($_POST['unitM'])) echo $_POST['unitM']; ?>">
-                           <option value="" disabled selected>Unit of Measurement</option> //list of measurements from database
-                     
-                            <?php
-                            $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
-                            while ($row = mysqli_fetch_array($sql)){
-                            echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
-                            }
-                             ?>
-                          </select>
-                        </td>
-                       
-
-
-                        <!--Ingredients-->
-                        <td>
-                          <select class="form-control" name="ing_name" 
-                          value="<?php if (isset($_POST['ing_name'])) echo $_POST['ing_name']; ?>">
-                           <option value="" disabled selected>Ingredients</option> //list of measurements from database
-                     
-                            <?php
-                            $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
-                            while ($row = mysqli_fetch_array($sql)){
-                            echo "<option value=\"" . $row['ingName_id'] . "\">" . $row['ing_name'] . "</option>";
-                            }
-                             ?>
-                          </select>
-                        </td>
-
-
-
-                        <HEAD>
-                          <SCRIPT language="javascript">
-                             function add(type) {
- 
-    //Create an input type dynamically.
-                              var element = document.createElement("input");
- 
-    //Assign different attributes to the element.
-                              element.setAttribute("type", type);
-                              element.setAttribute("value", type);
-                              element.setAttribute("name", type);
- 
- 
-                              var foo = document.getElementById("fooBar");
- 
-    //Append the element in page (in span).
-                              foo.appendChild(element);
- 
-                         }
-                          </SCRIPT>
-                      </HEAD>
-                        <BODY>
-                         <FORM>
-
-                           <BR/>
-                <SELECT name="element">
-                   <OPTION value="button">Button</OPTION>
-                   <OPTION value="text">Textbox</OPTION>
-                   <OPTION value="radio">Radio</OPTION>
-               </SELECT>
- 
-            <INPUT type="button" value="Add Ingredient" onclick="add(document.forms[0].element.value)"/>
- 
-             <span id="fooBar">&nbsp;</span>
- 
-                      </FORM>
-                  </BODY>
-
                       </p>
                   </div>
 
@@ -583,7 +469,6 @@
                     </div>
 
                 </form>
-               
               </div><!-- /.box -->
                 <div class="box-footer">
                     
