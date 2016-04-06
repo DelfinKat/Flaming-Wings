@@ -314,7 +314,6 @@ if (!isset($_SESSION["guest"])) {
 
               <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
@@ -462,7 +461,7 @@ if (!isset($_SESSION["guest"])) {
                      
 
                     
-                    <a href="javascript:void(0);" id="javanigga" class="add_button" title="Add field">Click here to add more ingredients</a>
+                    <a href="javascript:void(0);" id="javanigga" class="add_button" itle="Add field">Click here to add more ingredients</a>
            <!--HERE-->
 
                     </div>
@@ -479,8 +478,10 @@ if (!isset($_SESSION["guest"])) {
                 </form>
               </div><!-- /.box -->
                 <div class="box-footer">
-                    
+     
+                    <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
                     <input type="submit" class="btn btn-primary" value="Add Recipe" />
+
                    
                   </div>
 
@@ -534,8 +535,7 @@ if (!isset($_SESSION["guest"])) {
               </div><!-- /.box -->
             </div>
 
-       <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
-
+    
 
          
       <div class="control-sidebar-bg"></div>

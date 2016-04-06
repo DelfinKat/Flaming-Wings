@@ -44,7 +44,11 @@ if (!isset($_SESSION["guest"])) {
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+ <!-- PHP --> 
+   <?PHP 
+   include("dbconnection.php")
 
+   ?>
 
    
 
@@ -189,7 +193,6 @@ if (!isset($_SESSION["guest"])) {
 
               <ul class="treeview-menu">
                 <li><a href="http://localhost/Flaming-Wings/SearchRecipe.php"><i class="fa fa-circle-o"></i> Search Recipe</a></li>
-                <li><a href="http://localhost/Flaming-Wings/ViewRecipe.php"><i class="fa fa-circle-o"></i> View Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/AddRecipe.php"><i class="fa fa-circle-o"></i> Add Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/EditRecipe.php"><i class="fa fa-circle-o"></i> Edit Recipe</a></li>
                 <li><a href="http://localhost/Flaming-Wings/DeactivateRecipe.php"><i class="fa fa-circle-o"></i> Deactivate Recipe</a></li>
@@ -280,54 +283,82 @@ if (!isset($_SESSION["guest"])) {
           </form>
 
 
-        
-        <!---TABLE FOR RECIPE-->
-    <!--   <div class="row">
+          <div id="view" class="modal fade">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                        <b><h4>
+                       
+                </div>
+               <div class="modal-body">
+                <table id="viewTable" class="table table-bordered table-hover" name="viewTable">
+                          <tbody>
+                                <?php
+                                 $sql_query = "SELECT recipe_name FROM recipe WHERE recipe_id=1"; 
+                                    mysqli_query($connect, $sql_query); 
+                                    
+                               
+                                    echo "<td>" .$_POST['recipe_name']; "</td>"
+                                    
+                                ?> 
+                                <a href="ViewRecipe.php">Go Back</a>
+                          
+                          </tbody>
+                          </table>
+                     
+                    </div>
+                    </form>
+               </div>
+             </div>
+           </div>
+
+
+      <section class="content-header">
+      <h3>Recipes</h3> 
+      </section>
+       <section class="content">
+
+          <div class="row">
             <div class="col-xs-10">
               <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><b>RECIPES</b></h3>
-                </div><!-- /.box-header -->
-         <!--       <div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover">
+              
+                <div class="box-body">
+                  <table id="recipeTable" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Recipe name</th>
-                        <td>Wicked Oreos</td>
+                        <th>ID</th>
+                        <th>Recipe Type</th>
+                        <th>Recipe Name</th>
+                      
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>Type</td>
-                        <td>Dessert</td>
-                      </tr>
-                      <tr>
-                        <td>Ingredients</td>
-                        <td>
-                        <ul>
-                           <li>Pancake mix</li>
-                           <li>Oreos</li>
-                           <li>Ice Cream</li>
-                           <li>Sprinkles</li>
-                        </ul>
-                      </td>
-                        <td>
-                          <ul>
-                         <li>1 box</li>
-                         <li>3 pcs</li>
-                         <li>2 scoops</li>
-                         <li>1 spn</li>
-                          </ul>
-                       </td>
-                      </tr>
+                    <tbody> 
+                      
+                        <?php
+                        $stock_code = isset($_GET['recipe_name']) ? $_GET['recipe_name'] : '';
+                        $sql = mysqli_query($connect, "SELECT * FROM recipe r JOIN recipetype rtype WHERE r.recipe_typeid=rtype.recipe_typeid");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['recipe_id']."</td>"; //recipe id
+                          echo "<td>".$row["recipe_type"]."</td>"; //type
+                          echo "<td>".$row["recipe_name"]."</td>"; //recipe name
+                          echo '<td>  <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#view" aria-hidden="true">View</button></td>'; 
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                   
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
+            </div><!-- /.box -->
+            </div>
+            </div><!-- /.box-body -->
 
 
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+
+
     </div><!-- ./wrapper -->
           
 
