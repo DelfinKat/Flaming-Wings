@@ -1,9 +1,15 @@
 <!DOCTYPE html>
+
+
 <html>
-  <head>
+   <?php
+      $var_value = $_GET['varname']; 
+      ?>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Stock Report</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -37,15 +43,14 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
    <!-- PHP --> 
    <?PHP 
    include("dbconnection.php")
 
    ?>
-
     <!-- HEADER -->
   </head>
+  
   <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
 
@@ -165,8 +170,8 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <!--DASHBOARD-->
-            <li class="treeview">
-              <a href="MAIN.php">
+            <li class="active treeview">
+              <a href="http://localhost/Flaming Wings/MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -174,8 +179,7 @@
 
 
 
-
-            <!---RECIPE -->
+   <!---RECIPE -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-book"></i>
@@ -232,8 +236,8 @@
             </li>
         <!-- /.sidebar -->
 
-        
-         <!--CONVERSION-->
+          
+           <!--CONVERSION-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-calculator"></i> 
@@ -247,144 +251,100 @@
               </ul>
             </li>
       </aside>
-
-           <!--SEARCH--> 
+       <!--SEARCH--> 
     <div class="content-wrapper">
-       <section class="content">
+      
+   
+           <section class="content">
           <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"><b>Add New Stock</b></h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" action="AddStock1.php" method="post">
-                  <div class="box-body">
-
-                    <div class="form-group">
-                      <label>Quantity</label>
-                      <input type="number" step="any" min="0" class="form-control" id="qty" placeholder="Quantity" maxlength="5" name="qty" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label>Unit of Measurement</label>
-                      <select class="form-control" name="unitM" required
-                      value="<?php if (isset($_POST['unitM']) && !$flag) echo $_POST['unitM']; ?>">
-                        <option value="" disabled selected> -- Unit of Measurement --</option> //list of measurements from database
-                     
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT * FROM unitmeasurement");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['unit_id'] . "\">" . $row['unit_name'] . "</option>";
-                        }
-                         ?>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Packaging</label>
-                      <select class="form-control" name="pack_name" required
-                      value="<?php if (isset($_POST['pack_name']) && !$flag) echo $_POST['pack_name']; ?>">
-                        <option value="" disabled selected> -- Packaging --</option> 
-                     
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT * FROM unitpackaging");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['pack_id'] . "\">" . $row['pack_name'] . "</option>";
-                        }
-                         ?>
-                      </select>
-                    </div>
-                    
-
-                     <div class="form-group">
-                      <label for="InputItemName">Stock Name</label>
-                      <input type="text" class="form-control" id="InputItemName" placeholder="Enter stock name" maxlength="30" name="sname" required
-                      value="<?php if (isset($_POST['sname']) && !$flag) echo $_POST['sname']; ?>">
-                    </div>
-                 
-                  
-                     
-                     <div class="form-group">
-                      <label>Category/Type</label>
-                      <select class="form-control" placeholder="Category/Type" name="type" required
-                      value="<?php if (isset($_POST['type']) && !$flag) echo $_POST['type']; ?>">
-                        <option value="" disabled selected> -- Category/Type --</option> //list of stock type from database
-
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT * FROM stocktype");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['stocktype_id'] . "\">" . $row['stock_type'] . "</option>";
-                        }
-                         ?>
-                   
-                      </select>
-                    </div>
-                  
-                     <div class="form-group">
-                      <label>Ingredient Type</label>
-                      <select class="form-control" placeholder="Ingredient Types" name="ingtype" required
-                      value="<?php if (isset($_POST['ingtype']) && !$flag) echo $_POST['ingtype']; ?>">
-                        <option value="" disabled selected> -- Ingredient Types --</option> 
-                        <?php
-                        $sql = mysqli_query($connect, "SELECT * FROM ingredientname");
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['ingName_id'] . "\">" . $row['ing_name'] . "</option>";
-                        }
-                         ?>
-                   
-                      </select>
-                    </div>
-                  
-                
-
-
-                  </div><!-- /.box-body -->
-
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Add New Stock</button>
-                  </div>
-                </form>
-              </div><!-- /.box -->
-
-
-
-              <!-- RECENTLY ADDED TABLE -->
-              <div class="row">
             <div class="col-xs-12">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"><b>Recently Added Stocks</b></h3>
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>Stock Report for <?php $month = date("F Y");
+
+                    // $query = "SELECT sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id
+                    //       AND stock_id ='".$var_value."';"; 
+                    $sql = mysqli_query($connect, "SELECT sname FROM stock AS s WHERE stock_id ='".$var_value."';");
+                       while ($row = mysqli_fetch_array($sql)){
+                          echo "<h3>" .$row['sname']."</h3>"; }
+
+                     // echo $sql; 
+                     echo $month; 
+                     ?>
+                   </b>
+                  </br></br>
+                  <small class="pull-right">
+                  <?php 
+                    echo "<p>Report Date: " . date("Y-m-d l h:i:sa") . "</p>";
+
+                    ?>
+                  </small>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="recentlyadded" class="table table-bordered table-hover">
+                  <table id="stocktable" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Stock Code</th>
-                        <th>Category/Type</th>
-                        <th>Item Name</th>
+                        <th>Stock Category/Type</th>
+                        <th>Stock Name</th>
                         <th>Gross Weight</th>
-                        <th>UOM</th>
+                        <th>Unit of Measurement</th>
+                        <th>Ingredient Type</th>
                         <th>Packaging</th>
-
+                    <!--    <th>End Inventory</th> -->
+                      
                       </tr>
                     </thead>
+                    <tbody>
+                      <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                     
+                      
+
+                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname, qty, unit_name, ing_name, pack_name FROM stock AS s, stocktype AS type, unitmeasurement AS uom, ingredientname AS ingname, unitpackaging AS packname WHERE s.stocktype_id=type.stocktype_id AND s.unit_id=uom.unit_id AND s.ingName_id=ingname.ingName_id AND s.pack_id=packname.pack_id AND stock_id = '".$var_value."';");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['stock_id']."</td>"; //stockcode
+                          echo "<td>".$row['stock_type']."</td>"; //type
+                          echo "<td>".$row['sname']."</td>"; //itemname
+                          echo "<td>".$row['qty']."</td>"; //qty
+                          echo "<td>".$row['unit_name']."</td>"; //type
+                          echo "<td>".$row['ing_name']."</td>"; //itemname
+                          echo "<td>".$row['pack_name']."</td>"; //stockcode
+                     
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+                    </tbody>
+                  </table>
+
+                  <!-- REPLENISH -->
+                <div class="box-header">
+                  <h5 class="box-title"><b>Replenish History</b></h5>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="recentlyadded" class="table table-bordered table-hover">
+                   <!-- <thead>
+                      <tr>
+                        <th>Replenish Date</th>
+                        <th>Replenish ID</th>
+                        <th>Replenish Qty</th>
+                        <th>Stock Name</th>
+                        <th>Remarks</th>
+                    
+
+                      </tr>
+                    </thead>-->
                     <tbody>
                      
                        <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
-                          NATURAL JOIN unitpackaging ORDER BY stock_id DESC");
+                        $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks FROM `replenishstock` AS r, stock AS s WHERE s.stock_id=r.stock_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td>".$row['stock_id']."</td>"; //stockcode
-                          echo "<td>".$row["stock_type"]."</td>"; //type
-                          echo "<td>".$row["sname"]."</td>"; //itemname
-                          echo "<td>".$row["qty"]."</td>"; //gross weight
-                          echo "<td>".$row["unit_name"]."</td>"; //unit
-                          echo "<td>".$row["pack_name"]."</td>"; //packaging
+                          echo "<td>".$row['dtReceived']." #" .$row['replenish_id']. " Replenished Qty: " .$row['qty']. " Remarks: <i> " .$row['remarks']."</td>"; 
                           echo "</tr>";
 
                       
@@ -393,79 +353,35 @@
               
                  
                     </tbody>
-                   
-                <!--      <tfoot>
-                         <div class="box-body">
-                    <ul class="pagination">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                  </ul>
                    </div>
-                    </tfoot>  --> 
+                 </div>
+            
                   </table>
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-
-
-
-
-    </div><!-- ./wrapper -->
-          
-
-          </div><!-- /.tab-pane -->
-         
-    </div><!-- ./wrapper -->
-
-      <!-- VIEW RECIPES TABLE -->
-        <div class="row">
-            <div class="col-md-6">
-              <div class="col-xs-12">
-                <div class="box box-primary">
+                   <!-- end of replenish table -->
               
-                 <div class="box-header with-border">
-                  <h3 class="box-title"><b>Recipes</b></h3>
-                </div><!-- /.box-header -->
-                 <div class="box-body">
-                
-                  <table id="recipeTable" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Recipe Type</th>
-                        <th>Recipe Name</th>
-                      
-                      </tr>
-                    </thead>
-                    <tbody> 
-                      
-                        <?php
-                        $stock_code = isset($_GET['recipe_name']) ? $_GET['recipe_name'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM recipe NATURAL JOIN recipetype");
-                        while ($row = mysqli_fetch_array($sql)){
-                          echo "<tr>"; 
-                          echo "<td>".$row['recipe_id']."</td>"; //recipe id
-                          echo "<td>".$row["recipe_type"]."</td>"; //type
-                          echo "<td>".$row["recipe_name"]."</td>"; //recipe name
-                          echo '<td>  <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#view" aria-hidden="true">View</button></td>'; 
-                          echo "</tr>";
-
-                      
-                        }
-                         ?>
                    
-                    </tbody>
+             
                   </table>
-                   <a href="AddPackaging.php" class="btn btn-info" role="button">Add Packaging</a>
-                   <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-              </div>
+
+            <div class="row no-print">
+            <div class="col-xs-12">
+              <a href="InventoryReport-print.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
             </div>
           </div>
+
+      </div><!-- /.content-wrapper -->
+     
+
+
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

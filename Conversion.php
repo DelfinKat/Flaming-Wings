@@ -354,6 +354,7 @@
                         <th>ID</th>
                         <th>QTY1</th>
                         <th>UOM1</th>
+                        <th> = </th>
                         <th>QTY2</th>
                         <th>UOM2</th>
 
@@ -373,6 +374,7 @@
                           echo "<td>".$row['conv_id']."</td>"; //conv id
                           echo "<td>".$row["qty1"]."</td>"; //qty1
                           echo "<td>".$row['uname1']."</td>"; //unit_id1
+                          echo "<td>=</td>"; 
                           echo "<td>".$row["qty2"]."</td>"; //qty2
                           echo "<td>".$row['uname2']."</td>"; //unit_id1
                       

@@ -272,28 +272,22 @@
                       <tr>
                         <th>Stock Code</th>
                         <th>Stock Category/Type</th>
-                        <th>Item Name</th>
-                        <th>End Inventory</th>
-                        <th>Amount </th>
+                        <th>Stock Name</th>
+                    <!--    <th>End Inventory</th> -->
+                      
                       </tr>
                     </thead>
                     <tbody>
                       <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
-                          NATURAL JOIN replenishstock NATURAL JOIN verifystock");
+                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
                           echo "<td>".$row['stock_type']."</td>"; //type
-                          echo "<td>".$row['sname']."</td>"; //itemname
-                          echo "<td>".$row['qty']."</td>"; //qty
-                          echo "<td>".$row['dtReceived']."</td>"; //date stock received
-                          echo "<td>".$row['verifiedqty']."</td>"; //qty after verified
-                          echo "<td>".$row['dtVerified']."</td>"; //unit
+                          echo "<td><a href='StockReport.php?varname=".$row['stock_id']."'>" .$row['sname']."</a></td>"; //itemname
                           echo "</tr>";
 
-                      
                         }
                          ?>
                     </tbody>
