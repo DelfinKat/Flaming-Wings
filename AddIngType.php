@@ -353,7 +353,7 @@
           </div><!-- /.tab-pane -->
          
     </div><!-- ./wrapper -->
-      <a href="AddRecipe.php" class="btn btn-info" role="button"><< Go Back to Add Recipe</a>
+      <a href="AddStock.php" class="btn btn-info" role="button"><< Go Back to Add Stock</a>
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

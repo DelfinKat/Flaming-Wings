@@ -171,7 +171,7 @@
 
             <!--DASHBOARD-->
             <li class="active treeview">
-              <a href="MAIN.php">
+              <a href="http://localhost/Flaming Wings/MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -251,21 +251,19 @@
               </ul>
             </li>
       </aside>
-       <!--SEARCH--> 
+
+
+
+      <!--SEARCH--> 
     <div class="content-wrapper">
-      
-   
-           <section class="content">
+      <section class="content">
+          
           <div class="row">
             <div class="col-xs-12">
-                <a href="InventoryReport.php"> << Go Back</a>
               <div class="box">
                 <div class="box-header">
-
                   <h3 class="box-title"><b>Stock Report for <?php $month = date("F Y");
 
-                    // $query = "SELECT sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id
-                    //       AND stock_id ='".$var_value."';"; 
                     $sql = mysqli_query($connect, "SELECT sname FROM stock AS s WHERE stock_id ='".$var_value."';");
                        while ($row = mysqli_fetch_array($sql)){
                           echo "<h3>" .$row['sname']."</h3>"; }
@@ -321,46 +319,38 @@
                          ?>
                     </tbody>
                   </table>
-                      </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
                   <!-- REPLENISH -->
-
-           <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
                 
                   <h5><b>Replenish History</b></h5>
-                </div>
+             
                 <div class="box-body">
                   <table id="recentlyadded" class="table table-bordered table-hover">
-                   <thead>
+                   <!-- <thead>
                       <tr>
-                        <th>Qty</th>
+                        <th>Replenish Date</th>
+                        <th>Replenish ID</th>
+                        <th>Replenish Qty</th>
+                        <th>Stock Name</th>
                         <th>Remarks</th>
-                        <th>Person in-charge</th>
-                        <th>Date Replenished</th>
-                      
                     
 
                       </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
                      
                        <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks, user_name FROM `replenishstock` AS r, stock AS s, users AS u WHERE s.stock_id=r.stock_id AND r.user_id=u.user_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
+                        $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks FROM `replenishstock` AS r, stock AS s WHERE s.stock_id=r.stock_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td> + " .$row['qty']."</td>"; 
-                          echo "<td>".$row['remarks']."</td>"; 
-                           echo "<td>".$row['user_name']."</td>"; 
-                          echo "<td>".$row['dtReceived']."</td>"; 
+                          echo "<td>".$row['dtReceived']." #" .$row['replenish_id']. " Replenished Qty: " .$row['qty']. " Remarks: <i> " .$row['remarks']."</td>"; 
                           echo "</tr>";
 
                       
@@ -371,41 +361,24 @@
                     </tbody>
                    </div>
                  </div>
-            
-                  </table>
-                    <! -- END OF REPLENISH TABLE --> 
+               </table>
+                    <! -- end of replenish table --> 
 
-                    <!-- WITHDRAW TABLE-->
+                    <!-- Withdraw Table -->
            
                   <h5><b>Withdraw History</b></h5>
             
                 <div class="box-body">
                   <table id="withdraw" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th> Qty</th>
-                        <th>Remarks</th>
-                        <th>Person in-charge</th>
-                        <th>Date Withdrawn</th>
-                      
-                    
-
-                      </tr>
-                    </thead>
                   
                     <tbody>
                      
                        <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT w.qty, remarks, user_name, dtWithdrawn, withdraw_id FROM withdrawstock AS w, users AS u, stock AS s WHERE w.user_id=u.user_id AND s.stock_id = w.stock_id AND s.stock_id = '".$var_value."' ORDER BY withdraw_id desc");
-                    
+                        $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks FROM `replenishstock` AS r, stock AS s WHERE s.stock_id=r.stock_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td> - ".$row['qty']." </td>";
-                          echo "<td>".$row['remarks']."</td>";
-                          echo "<td>".$row['user_name']."</td>"; 
-                          echo "<td>".$row['dtWithdrawn']."</td>";
-                       
+                          echo "<td>".$row['dtReceived']." #" .$row['replenish_id']. " Replenished Qty: " .$row['qty']. " Remarks: <i> " .$row['remarks']."</td>"; 
                           echo "</tr>";
 
                       
@@ -416,74 +389,40 @@
                     </tbody>
                    </div>
                   </table>
-    
-                  <!-- END OF WITHDRAW TABLE --> 
-                  
-                  <!-- VERIFY TABLE -->
-           
-                <h5><b>Verify History</b></h5>
-                
-                <div class="box-body">
-                  <table id="verify" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>Qty</th>
-                        <th>Remarks</th>
-                        <th>Person in-charge</th>
-                        <th>Date Verified</th>
-                      
-                    
-
-                      </tr>
-                    </thead>
-                  
-                    <tbody>
-                      <!--SELECT verifiedqty, remarks, user_name, dtVerified, verify_id FROM verifystock AS v, users AS u WHERE v.user_id=u.user_id AND stock_id = '5' ORDER BY verify_id DESC
-                     -->
-                       <?php
-                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-
-                  
-
-           
-
-                        $sql = mysqli_query($connect, "SELECT verifiedqty, remarks, user_name, dtVerified, verify_id, verifystock.stock_id FROM verifystock, users AS u, stock WHERE verifystock.user_id=u.user_id AND stock.stock_id=verifystock.stock_id AND stock.stock_id = '".$var_value."' ORDER BY verify_id DESC");
-                        while ($row = mysqli_fetch_array($sql)){
-                          echo "<tr>"; 
-                        
-                          echo "<td>".$row['verifiedqty']." </td>";
-                          echo "<td>".$row['remarks']."</td>";
-                          echo "<td>".$row['user_name']."</td>"; 
-                          echo "<td>".$row['dtVerified']."</td>";
-                       
-                     
-                          echo "</tr>";
-
-                      
-                        }
-                         ?>
-              
-                 
-                    </tbody>
-                   </div>
-                  </table>
-                  <!-- END OF VERIFY TABLE -->
-
-    </div><!-- ./wrapper -->
-          
-
-          </div><!-- /.tab-pane -->
-         
-    </div><!-- ./wrapper -->
-                 
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-             <div class="row no-print">
-            <div class="col-xs-12">
-              <a href="InventoryReport-print.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-            </div>
-          </div>
+                   <!-- end of replenish table -->
+
+                       <!-- Withdraw Table -->
+           
+                  <h5><b>Verify History</b></h5>
+            
+                <div class="box-body">
+                  <table id="withdraw" class="table table-bordered table-hover">
+                  
+                    <tbody>
+                     
+                       <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks FROM `replenishstock` AS r, stock AS s WHERE s.stock_id=r.stock_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['dtReceived']." #" .$row['replenish_id']. " Replenished Qty: " .$row['qty']. " Remarks: <i> " .$row['remarks']."</td>"; 
+                          echo "</tr>";
+
+                      
+                        }
+                         ?>
+              
+                 
+                    </tbody>
+                   </div>
+                  </table>
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+                
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -491,15 +430,18 @@
               
                    
              
-              
-       
+                  </table>
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
+            <div class="row no-print">
+            <div class="col-xs-12">
+              <a href="InventoryReport-print.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+            </div>
+          </div>
 
       </div><!-- /.content-wrapper -->
-     
 
 
       <!-- Add the sidebar's background. This div must be placed
@@ -546,3 +488,5 @@
     <script src="dist/js/demo.js"></script>
   </body>
 </html>
+
+     

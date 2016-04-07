@@ -268,7 +268,7 @@
                             <td align="center">
                               <b>Are you sure to deactivate recipe?</b>
                                 <button type="submit" form="replenishTable" value="Submit">Deactivate</button>
-                                <a href="http://localhost/Flaming Wings/DeactivateRecipe.php">Cancel</a>
+                                <a href="DeactivateRecipe.php">Cancel</a>
                             </td>
                           </tbody>
                           </table>

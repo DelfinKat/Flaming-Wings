@@ -310,7 +310,7 @@
                   <h3 class="box-title"><b>Withdraw Stock</b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="#" method="post">
+                <form role="form" action="WithdrawStock1.php" method="post">
                   <div class="box-body">
                    
                      <div class="form-group">
@@ -320,9 +320,9 @@
                         <option value="" disabled selected> -- ID -- Stock Name -- In-stock --</option> 
                         
                         <?php
-                        $sql = mysqli_query($connect, "SELECT stock_id, sname, qty, unit_name, pack_name FROM stock s JOIN unitmeasurement m JOIN unitpackaging p WHERE s.unit_id=m.unit_id AND p.pack_id=s.pack_id");
+                        $sql = mysqli_query($connect, "SELECT s.stock_id, sname, r.qty, pack_name FROM stock AS s, unitpackaging AS p, replenishstock AS r WHERE p.pack_id=s.pack_id AND r.stock_id=s.stock_id");
                         while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " " .$row['unit_name']. " ".$row['pack_name']. "</option>"; 
+                        echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " ".$row['pack_name']. "</option>"; 
                         }
                          ?>
                       </select>
@@ -347,6 +347,20 @@
                       <input type="text" class="form-control" rows="3" id="InputRemarks" placeholder="Remarks..." name="remarks" required>
                     </div>
                   
+                      <div class="form-group">
+                      <label>Person in-charge</label>
+                      <select class="form-control" name="user_name" required
+                      value="<?php if (isset($_POST['user_name']) && !$flag) echo $_POST['user_name']; ?>">
+                        <option value="" disabled selected> -- Employees --</option> 
+                     
+                        <?php
+                        $sql = mysqli_query($connect, "SELECT * FROM users");
+                        while ($row = mysqli_fetch_array($sql)){
+                        echo "<option value=\"" . $row['user_id'] . "\">" . $row['user_name'] . "</option>";
+                        }
+                         ?>
+                      </select>
+                    </div>
                    
 
                   
