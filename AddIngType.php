@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Add Ingredient Type</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -270,7 +270,7 @@
                     </div>
                       <div class="form-group">
                       <label>Emergency Level</label> <h5>This is the minimum amount of the ingredient you should have on hand.</h5> 
-                      <input type="number" step="any" class="form-control" id="emergencyLvl" placeholder="emergencyLvl" name="emergencyLvl" required>
+                      <input type="number" step="any" min=0 class="form-control" id="emergencyLvl" placeholder="emergencyLvl" name="emergencyLvl" required>
                     </div>
 
           

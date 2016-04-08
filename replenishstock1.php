@@ -3,6 +3,15 @@
   header ("Refresh: 3; url=ReplenishStock.php"); 
 ?>
 <!DOCTYPE html>
+
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Flaming Wings | Replenish Stock</title>

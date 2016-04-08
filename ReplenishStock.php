@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Flaming Wings | Dashboard</title>
+    <title>Flaming Wings | Replenish Stock</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -263,6 +271,7 @@
                 <!-- form start -->
                 <form role="form" action="replenishstock1.php" method="post">
                   <div class="box-body">
+                    <!-- SELECT s.stock_id, sname, r.qty, pack_name FROM stock AS s, unitpackaging AS p, replenishstock AS r WHERE p.pack_id=s.pack_id AND r.stock_id=s.stock_id ORDER BY replenish_id LIMIT 1-->
                    
                      <div class="form-group">
                       <label>Stock Name</label>
@@ -271,7 +280,7 @@
                         <option value="" disabled selected> -- ID -- Stock Name -- In-stock --</option> 
                         
                         <?php
-                        $sql = mysqli_query($connect, "SELECT s.stock_id, sname, r.qty, pack_name FROM stock AS s, unitpackaging AS p, replenishstock AS r WHERE p.pack_id=s.pack_id AND r.stock_id=s.stock_id");
+                        $sql = mysqli_query($connect, "SELECT s.stock_id, sname, r.qty, pack_name FROM stock AS s, unitpackaging AS p, replenishstock AS r WHERE p.pack_id=s.pack_id AND r.stock_id=s.stock_id ORDER BY s.stock_id ASC");
                         while ($row = mysqli_fetch_array($sql)){
                         echo "<option value=\"" . $row['stock_id'] . "\">".$row['stock_id']. " -- ".$row['sname']. " -- " .$row['qty']. " ".$row['pack_name']. "</option>"; 
                         }

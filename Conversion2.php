@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -488,30 +496,7 @@
                       
                         }
                          ?>
-                     <!-- <tr>
-                        <td>0001</td>
-                        <td>Rice</td>
-                        <td>Pasta/Rice</td>
-                        <td>10</td>
-                        <td>sack/s</td>
-                       
-                      </tr>
-                      <tr>
-                        <td>0002</td>
-                        <td>Alaska Crema</td>
-                        <td>Dairy</td>
-                        <td>46</td>
-                        <td>piece/s</td>
-                      
-                      </tr>
-                        <tr>
-                        <td>0003</td>
-                        <td>Century Tuna</td>
-                        <td>Canned Goods</td>
-                        <td>2</td>
-                        <td>can/s</td>
-                      
-                      </tr>-->
+                 
                      
                     </tbody>
                   </table>

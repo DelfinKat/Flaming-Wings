@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 <html>
   <head>
     <meta charset="utf-8">

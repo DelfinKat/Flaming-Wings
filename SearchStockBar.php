@@ -11,6 +11,14 @@ $r_query = "";
 ?>
 
 <!DOCTYPE html>
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -302,9 +310,7 @@ $r_query = "";
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Unit of Measurement</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>User</th>
+              
                       </tr>
                     </thead>
                     <tbody>
@@ -336,6 +342,8 @@ while ($row = mysqli_fetch_array($r_query)){
                   <a href="SearchStock.php">Search Again</a>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+
+              
 
   
 

@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -167,7 +175,7 @@
 
             <!--DASHBOARD-->
             <li class="active treeview">
-              <a href="http://localhost/Flaming Wings/MAIN.php">
+              <a href="MAIN.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
@@ -276,31 +284,34 @@
           </form>
 
 
-           <!--<div class="row">
-            <div class="col-xs-10">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><b>Results</b></h3>
-                </div><!-- /.box-header -->
-           <!--     <div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover">
+            <div class="box-body">
+                  <table id="stocktable" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Stock Code</th>
-                        <th>Category/Type</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Unit of Measurement</th>
+                        <th>Stock Category/Type</th>
+                        <th>Stock Name</th>
+                    <!--    <th>End Inventory</th> -->
+                      
                       </tr>
                     </thead>
                     <tbody>
-                    
-                     
+                      <?php
+                        $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
+                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id");
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo "<tr>"; 
+                          echo "<td>".$row['stock_id']."</td>"; //stockcode
+                          echo "<td>".$row['stock_type']."</td>"; //type
+                          echo "<td><a href='StockReport.php?varname=".$row['stock_id']."'>" .$row['sname']."</a></td>"; //itemname
+                          echo "</tr>";
 
+                        }
+                         ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-             <!-- </div><!-- /.box -->
+              </div><!-- /.box -->
 
     </div><!-- ./wrapper -->
           

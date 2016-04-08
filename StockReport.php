@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<?php
 
+session_start();
+if (!isset($_SESSION["guest"])) {
+  header("login.php");
+}
+
+?>
 
 <html>
    <?php
@@ -357,7 +364,7 @@
                         $sql = mysqli_query($connect, "SELECT dtReceived, replenish_id, r.qty, sname, remarks, user_name FROM `replenishstock` AS r, stock AS s, users AS u WHERE s.stock_id=r.stock_id AND r.user_id=u.user_id AND s.stock_id ='".$var_value."' ORDER BY replenish_id DESC;");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td> + " .$row['qty']."</td>"; 
+                          echo "<td>" .$row['qty']."</td>"; 
                           echo "<td>".$row['remarks']."</td>"; 
                            echo "<td>".$row['user_name']."</td>"; 
                           echo "<td>".$row['dtReceived']."</td>"; 
@@ -401,7 +408,7 @@
                     
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
-                          echo "<td> - ".$row['qty']." </td>";
+                          echo "<td>".$row['qty']." </td>";
                           echo "<td>".$row['remarks']."</td>";
                           echo "<td>".$row['user_name']."</td>"; 
                           echo "<td>".$row['dtWithdrawn']."</td>";
