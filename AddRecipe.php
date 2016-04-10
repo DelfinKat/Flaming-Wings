@@ -461,7 +461,7 @@ if (!isset($_SESSION["guest"])) {
                      
 
                     
-                    <a href="javascript:void(0);" id="javanigga" class="add_button" itle="Add field">Click here to add more ingredients</a>
+                    <a href="javascript:void(0);" id="javanigga" class="add_button" title="Add field">Click here to add more ingredients</a>
            <!--HERE-->
 
                     </div>
@@ -478,10 +478,8 @@ if (!isset($_SESSION["guest"])) {
                 </form>
               </div><!-- /.box -->
                 <div class="box-footer">
-     
-                    <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
+                    
                     <input type="submit" class="btn btn-primary" value="Add Recipe" />
-
                    
                   </div>
 
@@ -535,7 +533,8 @@ if (!isset($_SESSION["guest"])) {
               </div><!-- /.box -->
             </div>
 
-    
+       <a href="AddIngType.php" class="btn btn-info" role="button">Add Ingredient Type</a>
+
 
          
       <div class="control-sidebar-bg"></div>

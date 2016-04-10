@@ -271,6 +271,8 @@ if (!isset($_SESSION["guest"])) {
 
                     ?>
                   </small>
+                 
+              
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="stocktable" class="table table-bordered table-hover">
@@ -286,7 +288,7 @@ if (!isset($_SESSION["guest"])) {
                     <tbody>
                       <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id");
+                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id AND deactivate = 0");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
@@ -295,6 +297,10 @@ if (!isset($_SESSION["guest"])) {
                           echo "</tr>";
 
                         }
+
+                        $rowcount=mysqli_num_rows($sql); 
+                        echo "<b>Total Number of Stocks:</b> " .$rowcount; 
+
                          ?>
                     </tbody>
                   </table>

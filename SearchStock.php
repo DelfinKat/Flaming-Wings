@@ -282,7 +282,7 @@ if (!isset($_SESSION["guest"])) {
             </div>
           </form>
 
-
+ <div class="box box-primary">
             <div class="box-body">
                   <table id="stocktable" class="table table-bordered table-hover">
                     <thead>
@@ -302,7 +302,7 @@ if (!isset($_SESSION["guest"])) {
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
                           echo "<td>".$row['stock_type']."</td>"; //type
-                          echo "<td><a href='StockReport.php?varname=".$row['stock_id']."'>" .$row['sname']."</a></td>"; //itemname
+                          echo "<td><a href='StockDetails.php?varname=".$row['stock_id']."'>" .$row['sname']."</a></td>"; //itemname
                           echo "</tr>";
 
                         }

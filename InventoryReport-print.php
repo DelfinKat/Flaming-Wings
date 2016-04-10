@@ -54,40 +54,39 @@
         </div><!-- /.row -->
 
         <!-- Table row -->
-     <div class="row">
-          <div class="col-xs-12 table-responsive">
+     <div class="col-xs-6">
+          <div class="table-responsive">
              <h3 class="box-title"><b>Inventory Report for <?php $month = date("F Y"); echo $month;?></b>
-            <table class="table table-striped">
+              </br></br>
+
+
+                 
+            <table class="table">
                 
               <thead>
                 <tr><b>
-                   <th>Stock Code</th>
-                    <th>Item Name</th>
-                    <th>Remaining Quantity</th>
-                    <th>Date Received</th>
-                    <th>Actual Quantity</th>
-                   <th>Date Verified</th>
+                    <th>Stock Code</th>
+                    <th>Stock Category/Type</th>
+                    <th>Stock Name</th>
+              
                  </b>
                 </tr>
               </thead>
               <tbody>
-               <?php
+                <?php
                         $stock_code = isset($_GET['stock_code']) ? $_GET['stock_code'] : '';
-                        $sql = mysqli_query($connect, "SELECT * FROM stock NATURAL JOIN stocktype NATURAL JOIN unitmeasurement NATURAL JOIN ingredientname
-                          NATURAL JOIN replenishstock NATURAL JOIN verifystock");
+                        $sql = mysqli_query($connect, "SELECT stock_id, stock_type, sname FROM stock AS s, stocktype AS type WHERE s.stocktype_id=type.stocktype_id");
                         while ($row = mysqli_fetch_array($sql)){
                           echo "<tr>"; 
                           echo "<td>".$row['stock_id']."</td>"; //stockcode
-                          echo "<td>".$row["stock_type"]."</td>"; //type
-                          echo "<td>".$row["sname"]."</td>"; //itemname
-                          echo "<td>".$row["qty"]."</td>"; //qty
-                          echo "<td>".$row["dtReceived"]."</td>"; //date stock received
-                          echo "<td>".$row["verifiedqty"]."</td>"; //qty after verified
-                          echo "<td>".$row["dtVerified"]."</td>"; //unit
+                          echo "<td>".$row['stock_type']."</td>"; //type
+                          echo "<td>" .$row['sname']."</a></td>"; //itemname
                           echo "</tr>";
 
-                      
                         }
+
+                        $rowcount=mysqli_num_rows($sql); 
+                        echo "Total Number of Stocks: " .$rowcount; 
                          ?>
               
               </tbody>

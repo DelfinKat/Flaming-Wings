@@ -280,7 +280,7 @@ if (!isset($_SESSION["guest"])) {
                 </div><!-- /.box-header -->
                 <div class='box-body'>
                   <?php 
-
+                  
                 if (empty($_POST['query']) || $_POST["query"] == "0") { 
                   echo "There are no results.";
                
